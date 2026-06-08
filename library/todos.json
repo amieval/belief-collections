@@ -1,0 +1,9 @@
+[
+  {
+    "id": "t0001",
+    "action": "Recompute due dates for active checkouts after the loan-period change to 21 days",
+    "source": "lib:a021",
+    "created": "2026-01-09",
+    "status": "open"
+  }
+]

@@ -1,0 +1,539 @@
+[
+  {
+    "id": "paradigm:a058",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "tags": [],
+    "claim": "Sufficiently advanced agentic coding is essentially machine learning: engineer sets optimization goal and constraints (spec + tests), coding agents iterate until goal is reached, result is a blackbox model (the generated codebase) deployed without inspecting internal logic - implying classic ML pathologies will follow",
+    "artifact": "https://example.org/agentic-coding-is-ml",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "A widely-shared post argued that agentic coding is machine learning: the engineer sets the optimization goal and constraints (spec + tests), an optimization process (coding agents) iterates until the goal is reached, and the result is a blackbox (the generated codebase) deployed without inspecting internal logic. It identifies pathologies that follow: overfitting to the spec, Clever Hans shortcuts that do not generalize outside the tests, data leakage, concept drift. It asks what the optimal set of high-level abstractions is that lets humans steer codebase 'training' with minimal cognitive overhead.",
+        "artifact": "https://example.org/agentic-coding-is-ml"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "paradigm:a063",
+    "type": "implication",
+    "kind": "composable-belief",
+    "tags": [],
+    "claim": "The assertion DAG's abstraction set (primitive/compound/implication/materialization/self-referential subject) is a candidate answer to 'what is the Keras of agentic coding' - high-level abstractions that let humans steer agent behavior with minimal cognitive overhead",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a059",
+      "agent-behavior:a060",
+      "agent-behavior:a061",
+      "agent-behavior:a062"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "paradigm:a329",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "isolation"
+    ],
+    "name": "beam-private-heaps",
+    "claim": "BEAM processes each have a private heap. There is no shared mutable memory between processes; garbage collection runs per-process without stopping the world.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Established while contrasting per-process heaps with per-subagent context windows. Grounded in the foundational BEAM literature as a core design property.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a330",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "message-passing"
+    ],
+    "name": "beam-message-passing",
+    "claim": "BEAM processes communicate exclusively via asynchronous message passing. There is no synchronous call mechanism at the language level; request/response is a protocol built from two messages.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Message passing is the only inter-process communication primitive in BEAM; synchronous-looking constructs are layered protocols.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a331",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "message-passing"
+    ],
+    "name": "beam-message-deep-copy",
+    "claim": "Messages between BEAM processes are deep-copied at send time. Binaries larger than 64 bytes are refcounted and shared by reference; all other terms are copied.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Deep copy preserves the no-shared-mutable-state invariant; refcounted large binaries are the pragmatic exception.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a332",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "spawn-cost"
+    ],
+    "name": "beam-spawn-cost-microseconds",
+    "claim": "BEAM process spawn cost is on the order of microseconds. A single node routinely sustains hundreds of thousands to millions of concurrent processes.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Microsecond spawn is load-bearing for supervision, per-connection process models, and let-it-crash. Discussed to contrast with the seconds-scale spawn cost of agent subagents.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a333",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "supervision"
+    ],
+    "name": "beam-supervision-restart",
+    "claim": "BEAM supervision trees monitor child processes and restart failed children according to a configured strategy (one_for_one, one_for_all, rest_for_one, simple_one_for_one). Failure is expected; restart is the default response.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Supervision trees encode where failure is expected and how to recover; they are the structural counterpart to defensive error handling in other runtimes.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a334",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "coordination"
+    ],
+    "name": "beam-coordination-via-ets-genserver",
+    "claim": "BEAM coordinates shared state between processes via ETS tables (shared term storage) and GenServers (serialized access to mutable state). Both are external to any individual process's heap.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Shared-nothing processes require an out-of-process substrate for anything resembling shared state; shared term storage and serialized-access servers are the canonical patterns.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a335",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "isolation"
+    ],
+    "name": "subagent-isolated-context",
+    "claim": "Claude Code subagents run in isolated context windows. A subagent cannot see the orchestrator's conversation history, other subagents' contexts, or any shared memory; it receives only the prompt payload at invocation time.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Context isolation is explicit in the agent platform's subagent semantics and is the structural analogue of BEAM's per-process heaps.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a336",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "message-passing"
+    ],
+    "name": "subagent-tool-message-shape",
+    "claim": "Subagent-to-orchestrator communication is message-shaped: the orchestrator invokes a subagent via a tool_use block, and the subagent replies via a tool_result block. The subagent cannot mutate orchestrator state directly; its return value is the sole channel of effect.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The invoke/return shape is functionally equivalent to a request/response protocol built over asynchronous messages.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a337",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "spawn-cost"
+    ],
+    "name": "subagent-spawn-cost-seconds",
+    "claim": "Claude Code subagent spawn cost is on the order of seconds: model initialization, tool registration, and prompt processing dominate. A single orchestrator realistically spawns tens of subagents per task, not thousands.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The asymmetry between microsecond process spawn and seconds-scale subagent launch shapes which orchestration patterns are viable: fine-grained per-unit-of-work subagents are impractical.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a338",
+    "type": "primitive",
+    "kind": "fact",
+    "domain": "agent",
+    "tags": [
+      "subagent",
+      "supervision"
+    ],
+    "name": "claude-code-no-subagent-supervision",
+    "claim": "Claude Code has no native supervision tree for subagents. A failed subagent does not auto-restart; the orchestrator must observe the failure in the tool_result and decide whether to retry, fall back, or surface the error.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The absence of structural supervision means fault-tolerance must be implemented by every orchestrator, or delegated to a governance substrate.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a342",
+    "type": "primitive",
+    "kind": "analogical-claim",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "subagent",
+      "shared-nothing"
+    ],
+    "name": "shared-nothing-analogue",
+    "claim": "BEAM processes and Claude Code subagents share an architectural property: shared-nothing isolation. Neither can read or mutate the other's local state; all cross-boundary effect is mediated by explicit message-like transfer.",
+    "artifact": "source:beam-belief-graph-parallels",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The central analogical claim, grounded in private heaps and isolated contexts; the analogue enables reasoning about one system in terms of the other.",
+        "artifact": "source:beam-belief-graph-parallels"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a347",
+    "type": "primitive",
+    "kind": "human-factor",
+    "domain": "agent",
+    "tags": [
+      "offloading",
+      "cognitive-load"
+    ],
+    "name": "user-offloading-cognitive-load",
+    "claim": "User offloading of judgment to the agent is driven by cognitive load, not laziness. Decision cost (holding alternatives in mind, weighing tradeoffs, committing to a choice) is the bottleneck; offloading is rational economy of attention.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The demand side of the reinforcing loop: the user is not failing to think; the user is rationing attention. Framing offloading as laziness misses the mechanism and misdirects remedies.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a348",
+    "type": "primitive",
+    "kind": "structural-parallel",
+    "domain": "agent",
+    "tags": [
+      "expertise-asymmetry"
+    ],
+    "name": "expertise-asymmetry-parallel",
+    "claim": "The agent-user expertise asymmetry is structurally analogous to expert-client asymmetries in consulting, medicine, and legal practice. In each, one party holds deep technical capability and the other holds the decision authority and context that frames what the capability should serve.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "A cross-domain framing for agent-user dynamics: the named professions have all wrestled with the same tension, where expert deference to a lay client produces worse outcomes than disciplined pushback.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a349",
+    "type": "primitive",
+    "kind": "outcome-claim",
+    "domain": "agent",
+    "tags": [
+      "expertise-asymmetry",
+      "deference"
+    ],
+    "name": "asymmetric-expert-deference-harmful",
+    "claim": "In expertise-asymmetric relationships, deference from the expert produces worse outcomes than honest pushback. The client cannot course-correct on information the expert is withholding or softening; the asymmetry that made the expert valuable is the same asymmetry that makes deference damaging.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Professional codes of conduct codify this: the expert's duty includes resisting the client's preference when it is wrong, not accommodating it.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a350",
+    "type": "compound",
+    "kind": "design-rationale",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "subagent",
+      "shared-nothing",
+      "coordination"
+    ],
+    "name": "shared-nothing-requires-external-substrate",
+    "claim": "Because BEAM processes (a329) and Claude subagents (a335) are both shared-nothing (a342), any coordinated cross-process or cross-subagent work requires a coordination substrate external to any single participant's local state. The isolation that makes each participant robust is the same isolation that makes an external substrate necessary.",
+    "subjects": [],
+    "deps": [
+      "paradigm:a329",
+      "paradigm:a335",
+      "paradigm:a342"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a351",
+    "type": "compound",
+    "kind": "design-rationale",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "dag",
+      "coordination"
+    ],
+    "name": "dag-is-subagent-coordination-substrate",
+    "claim": "The DAG fills the subagent coordination role that ETS and GenServers fill for BEAM (a334). Its persistence across sessions (a339) and across subagent invocations (a340), combined with its canonical status (a341) and its role as shared prosthetic (a111), make it the structural analogue of BEAM's out-of-process coordination layer.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a334",
+      "cb:a339",
+      "cb:a340",
+      "cb:a341",
+      "agent-behavior:a111"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a352",
+    "type": "compound",
+    "kind": "design-gap",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "subagent",
+      "supervision",
+      "governance"
+    ],
+    "name": "subagent-governance-gap",
+    "claim": "BEAM encodes fault-tolerance structurally through supervision trees (a333). Claude Code has no equivalent supervision for subagents (a338). The discipline BEAM provides at runtime must, in subagent systems, be imposed by governance substrate rather than by the runtime itself.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a333",
+      "paradigm:a338"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a355",
+    "type": "implication",
+    "kind": "design-rationale",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "dag",
+      "subagent",
+      "governance"
+    ],
+    "name": "dag-is-beam-discipline-for-cognition",
+    "claim": "The DAG is to Claude subagents what ETS and GenServers are to BEAM processes: a disciplined coordination substrate for shared-nothing cognition. Its persistence and canonicity are the coordination analogue (a351); its governance constraints (conflict audit, immutability, source grounding) are the supervision analogue (a352); the shared-nothing property (a342) is the constraint that makes both substrates load-bearing rather than optional.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a350",
+      "paradigm:a351",
+      "paradigm:a352",
+      "paradigm:a342"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a357",
+    "type": "implication",
+    "kind": "architectural-synthesis",
+    "domain": "system",
+    "tags": [
+      "beam",
+      "dag",
+      "governance",
+      "architecture"
+    ],
+    "name": "distributed-cognition-borrows-beam-discipline",
+    "claim": "Distributed computation and distributed cognition face structurally analogous coordination problems. Shared-nothing isolation requires an external coordination substrate in both domains (a355). The failure modes that BEAM's supervision discipline addresses have analogues in cognition that require equivalent structural response (a356). The DAG borrows BEAM's design discipline - immutable coordination substrate, failure isolation via audit, canonical state outside any participant - to compensate for the shared-nothing subagent architecture that Claude Code imposes by construction.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a355",
+      "agent-behavior:a356"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  }
+]

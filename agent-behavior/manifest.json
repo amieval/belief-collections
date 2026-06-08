@@ -1,0 +1,5 @@
+{
+  "namespace": "agent-behavior",
+  "depends_on": ["cb", "paradigm"],
+  "description": "Beliefs about agent behavior: reasoning errors, interaction patterns, and corrective rules observed in operation. Carries no schema vocabulary of its own - it uses the cb: enum and lifecycle contracts (kind/domain/artifact-scheme, status). Compositionally coupled with the paradigm: collection: compounds here compose paradigm: beliefs and paradigm: composes these (a real cross-namespace chain, e.g. paradigm:a058 -> a059-a062 -> paradigm:a063), so the two co-resolve as a pair rather than separating cleanly - the dep is load-bearing, not a citation to convert to provenance."
+}

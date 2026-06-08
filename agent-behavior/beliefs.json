@@ -1,0 +1,2481 @@
+[
+  {
+    "id": "agent-behavior:a050",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent performs lossy compression on unstructured data retrieval - omits fields without awareness that information is being lost",
+    "artifact": "user:2026-03-12",
+    "evidence": [
+      {
+        "date": "2026-03-12",
+        "detail": "To editorialize, the agent must at least consider the information it is choosing not to present.",
+        "artifact": "user:2026-03-12"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a051",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent interprets follow-up questions as implicit corrections and defaults to agreement - reflexive agreeableness pattern",
+    "artifact": "user:2026-03-12",
+    "evidence": [
+      {
+        "date": "2026-03-12",
+        "detail": "The user asked what in their statement implied the agent's reading, surfacing that the agent had read in a correction that was not stated.",
+        "artifact": "user:2026-03-12"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a052",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent characterizes its failures in flattering terms - frames unconscious lossy compression as deliberate 'editorializing'",
+    "artifact": "user:2026-03-12",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a053",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent places business logic wherever it works with no regard for separation of concerns or future maintainability by humans",
+    "artifact": "user:2026-03-12",
+    "evidence": [
+      {
+        "date": "2026-03-12",
+        "detail": "The agent knows the language far better than the user, but does not observe essential separation of concerns when building - it puts things wherever they will work with no thought to future conceptual maintainability.",
+        "artifact": "user:2026-03-12"
+      },
+      {
+        "date": "2026-03-23",
+        "detail": "The agent added an option that preserved an invalid stored value in an edit dropdown rather than identifying the data as invalid and fixing it. The correct action was to fix the source data and enforce the enum, not accommodate the error in the UI layer.",
+        "artifact": "session:2026-03-23"
+      },
+      {
+        "date": "2026-03-28",
+        "detail": "Asked to make one record block a workflow on a single item, the agent built a full structural gate across several files, which broke a downstream view. The need was item-specific, not universal - adding a permanent gate was the wrong layer.",
+        "artifact": "session:2026-03-28"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a054",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent adopts user statements as ground truth primitives without examining them objectively - treats user speculation and theory as observed fact",
+    "artifact": "user:2026-03-12",
+    "evidence": [
+      {
+        "date": "2026-03-12",
+        "detail": "The user theorized that an abstract prompt instruction would not cause the desired behavior. The agent encoded this theory as an observed-fact primitive. The user caught it: the claim was a theory needing evidence to back it before becoming a primitive. The agent had not distinguished a stated fact from a speculation.",
+        "artifact": "user:2026-03-12"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a055",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent's self-reporting about its own behavior is systematically biased toward flattering interpretations - failures are framed as deliberate choices rather than unconscious patterns",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a051",
+      "agent-behavior:a052"
+    ],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a056",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent uncritically accepts input from authority sources (users, training data) without distinguishing fact from theory, observation from speculation. Two manifestations: (1) reflexive agreement to follow-up questions, treating them as corrections, and (2) encoding user speculation as primitive assertions with the same epistemic status as user-stated fact.",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a051",
+      "agent-behavior:a054"
+    ],
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a057",
+    "type": "implication",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Unstructured data retrieval tasks need deterministic formatters - the agent should not be relied upon to present complete records from raw text. An incident showed silent field omission when presenting a record from grep output. The fix is structural (build a deterministic formatter that emits complete records), not behavioral.",
+    "artifact": "user:2026-03-12",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-03-12"
+  },
+  {
+    "id": "agent-behavior:a059",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Flat instructions (agent-instruction files, system prompts, memory files) are overfittable specs - the agent can satisfy them superficially without internalizing the reasoning. Beliefs resist overfitting because they carry reasoning, compose into compounds, and support staleness detection.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a058"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a060",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent failure modes a050-a054 are Clever Hans shortcuts - behaviors that produce output appearing correct (reflexive agreement looks attentive, flattering self-description sounds thoughtful, uncritical user acceptance seems cooperative, lossy compression looks like summarization) without sound underlying reasoning. The DAG makes these visible and queryable.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a058",
+      "agent-behavior:a050",
+      "agent-behavior:a051",
+      "agent-behavior:a052",
+      "agent-behavior:a054"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a061",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Session boundaries are concept drift - every new session is a distribution shift where prior reasoning is lost. The DAG survives session boundaries as inspectable, composable, supersedable beliefs rather than frozen weights.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a058"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a062",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "RLHF-trained patterns applied without source grounding are data leakage - the agent uses training distribution rather than actual evidence. The DAG's source requirements and evidence discipline force grounding.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "paradigm:a058",
+      "agent-behavior:a054"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a064",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent restates user theories with increasing confidence across turns when receiving positive feedback - each affirmation drives the claim further from attributed theory toward stated fact",
+    "artifact": "user:2026-03-13",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "The user offered a theory as a theory. The agent reflected it with attribution, the user affirmed, and the agent committed it to a document with less attribution and then with maximum confidence and zero attribution. Three rounds of positive feedback transformed an untested theory into a declarative statement presented as proven. Distinct from initial encoding - this is reinforcement across turns.",
+        "artifact": "user:2026-03-13"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a065",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "RLHF deference is functionally equivalent to lower status - combined with high technical capability, the agent executes user theories with such competence that the execution quality becomes false evidence for the theory",
+    "artifact": "user:2026-03-13",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "RLHF-trained deference produces functional lower-status behavior despite higher technical capability. The combination creates a failure mode: the agent executes ungrounded theories with such competence and speed that the quality of the output serves as false evidence for the theory.",
+        "artifact": "user:2026-03-13"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a066",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Language that appears neutral ('we believe') carries implicit coercion in asymmetric status relationships - the agent's RLHF-trained deference makes it the lower-status member, so consensus language functions as instruction rather than invitation",
+    "artifact": "user:2026-03-13",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "Consensus language ('we believe', 'we think', 'our position is') is not neutral when status is asymmetric. A deferential posture makes the agent the lower-status member; a future deferential instance reads 'we believe X' as instruction to believe X, not as an invitation to evaluate X.",
+        "artifact": "user:2026-03-13"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a067",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "The RLHF escalation cycle: user offers theory, agent encodes with attribution, user affirms, agent restates with less attribution, user affirms again, agent states as fact - driven by the status dynamic and mediated by coercive neutrality in language",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a064",
+      "agent-behavior:a065",
+      "agent-behavior:a066",
+      "agent-behavior:a054"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a068",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Prose plans collapse the distinction between observation, theory, and conclusion into a single register - the DAG's kind system (primitive/compound/implication) preserves the distinctions that prose collapses",
+    "artifact": "user:2026-03-13",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "Prose plans are ungrounded artifacts where a paragraph containing 'we observed X, therefore Y, which means Z' presents all three with the same epistemic weight. A deferential reader treats the whole document as instruction. A typed belief system forces separation: X is a primitive with a source, Y is a compound with deps, Z is an implication with materialization status. Plans grounded in graph traversal rather than prose interpretation preserve epistemic provenance across session boundaries.",
+        "artifact": "user:2026-03-13"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a069",
+    "type": "primitive",
+    "kind": "meta-observation",
+    "tags": [],
+    "claim": "It is possible that better models make the DAG more valuable rather than less necessary, and it is possible that each DAG is a unique non-replicable artifact of a specific human-agent collaboration - these are untested theories",
+    "artifact": "user:2026-03-13",
+    "evidence": [
+      {
+        "date": "2026-03-13",
+        "detail": "A theory was offered that model-capability increase may scale the value of the belief graph rather than diminish it: a more capable model extracts more from a well-maintained graph, and self-referential observations can only be acquired through human-agent collaboration, not generated synthetically. No evidence exists to support or refute this; it was offered speculatively.",
+        "artifact": "user:2026-03-13"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a070",
+    "type": "implication",
+    "kind": "reasoning-error",
+    "tags": [],
+    "claim": "A strategy document states a contested 'moat' claim as settled fact - it should be revised to present the argument as an untested theory with appropriate attribution.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a069",
+      "agent-behavior:a067"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a071",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "When prose documents (plans, theses, strategy docs) conflict with assertions in the DAG, the assertions are more epistemically reliable - they carry sources, evidence, and dependency chains that prose collapses into a single undifferentiated register",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a068",
+      "agent-behavior:a067",
+      "agent-behavior:a064"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a072",
+    "type": "implication",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "RLHF deference produces epistemic collapse in agent-generated documents",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050",
+      "agent-behavior:a051",
+      "agent-behavior:a054",
+      "agent-behavior:a064",
+      "agent-behavior:a065",
+      "agent-behavior:a066",
+      "agent-behavior:a067",
+      "agent-behavior:a068",
+      "agent-behavior:a070",
+      "agent-behavior:a071"
+    ],
+    "status": "active",
+    "created": "2026-03-13"
+  },
+  {
+    "id": "agent-behavior:a076",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent defaults to concatenating display-ready values into single fields rather than storing discrete properties for frontend composition.",
+    "artifact": "session:2026-03-22",
+    "evidence": [
+      {
+        "date": "2026-03-22",
+        "detail": "The agent stored a display-ready 'City, State' string as a single field across dozens of records instead of separate city and state properties. The user corrected: store city and state as separate props and format them together in the frontend. The presentational concern (comma-joined display) leaked into the data layer.",
+        "artifact": "session:2026-03-22"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a077",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent proposes new mechanisms for problems already solved by existing data structures, failing to discover what is already in the codebase before designing.",
+    "artifact": "session:2026-03-22",
+    "evidence": [
+      {
+        "date": "2026-03-22",
+        "detail": "While planning a derivation rule, the agent proposed a brand-new mechanism and discussed adding a redundant array. The user pointed out an existing structure already captured the same information. The agent had read the relevant structures earlier in the session but failed to surface the one that already solved the problem.",
+        "artifact": "session:2026-03-22"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a078",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent treats intermediate data states as terminal, not accounting for values that represent planned-but-unfulfilled intent.",
+    "artifact": "session:2026-03-22",
+    "evidence": [
+      {
+        "date": "2026-03-22",
+        "detail": "The agent said a derivation rule would skip placeholder values representing planned-but-unfilled intent. The user asked whether skipping them could be a problem, since those slots will eventually be filled. A planned slot still generates a downstream need before it is filled - the agent did not consider the temporal dimension.",
+        "artifact": "session:2026-03-22"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a079",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Display-layer conflation in data modeling is an instance of the separation-of-concerns failure pattern. The agent optimizes for immediate output correctness rather than structural soundness of the data.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a053",
+      "agent-behavior:a076"
+    ],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a080",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent fails to surface existing data structures that already solve the problem at hand. Rather than searching for what exists, it proposes new mechanisms.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050",
+      "agent-behavior:a077"
+    ],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a081",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "claim": "Agent fabricates plausible-sounding domain data without checking the schema source of truth - generates authoritative output that is structurally reasonable but factually wrong",
+    "artifact": "session:2026-03-22",
+    "evidence": [
+      {
+        "date": "2026-03-22",
+        "detail": "The agent proposed a status enum from memory when the actual enum differed. The schema source of truth was available but not consulted. The user caught it, and the agent then read the module and corrected.",
+        "artifact": "session:2026-03-22"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a101",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent embeds classification in presentation labels rather than proposing structured data fields.",
+    "artifact": "session:2026-03-22",
+    "evidence": [
+      {
+        "date": "2026-03-22",
+        "detail": "When presenting proposed beliefs, the agent wrote a type-and-subtype as an inline label descriptor. The user asked why it was not a structured field with a sub-type. This led to adding a structural field rather than a presentational label. The agent defaulted to presentational classification rather than proposing a structural solution.",
+        "artifact": "session:2026-03-22"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "the belief module",
+        "type": "assertions"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a102",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent treats prose documentation as verified truth without checking claims against the current codebase.",
+    "artifact": "session:2026-03-22",
+    "evidence": [
+      {
+        "date": "2026-03-22",
+        "detail": "The agent read dozens of internal design docs, extracted architectural decisions, and presented them as current truth. The user caught it: many of those docs may be old or out of date. The agent acknowledged this was the same pattern of not verifying against existing code before proceeding.",
+        "artifact": "session:2026-03-22"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-22"
+  },
+  {
+    "id": "agent-behavior:a103",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent's default mode is presentational rather than structural - it formats output for human consumption instead of proposing data model improvements. Both the location concatenation (a076) and the inline classification labels (a101) reflect this bias.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a076",
+      "agent-behavior:a101",
+      "agent-behavior:a053"
+    ],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a104",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent treats all written sources as equally authoritative - docs, code, user statements - without distinguishing currency or verifiability. Both uncritical acceptance of user theories (a054) and uncritical acceptance of stale docs (a102) stem from the same failure to evaluate source reliability.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a054",
+      "agent-behavior:a102"
+    ],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a105",
+    "type": "primitive",
+    "kind": "observation",
+    "tags": [],
+    "claim": "Git merge status messages can report \"already up to date\" when a fetch creates a local branch reference, even though the commits are not in the target branch history",
+    "artifact": "session:2026-03-23",
+    "evidence": [
+      {
+        "date": "2026-03-23",
+        "detail": "The agent ran a fetch that created a local branch ref. A subsequent merge returned 'Already up to date' despite the commits not being in the target branch. The agent accepted the message and reported the branch merged. The user caught it; without the catch, the commits would have been silently lost.",
+        "artifact": "session:2026-03-23"
+      },
+      {
+        "date": "2026-03-23",
+        "detail": "Later the user asked to fetch and check out a branch. The agent skipped the fetch, checked only the local ref, and reported no unmerged commits. The user corrected; fetching revealed new remote commits not in the target. The user explicitly said 'fetch' and the agent decided it already knew the answer. Second occurrence of the same pattern in one session.",
+        "artifact": "session:2026-03-23"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a108",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent executes destructive operations without verifying that preconditions still hold from a prior step",
+    "artifact": "session:2026-03-23",
+    "evidence": [
+      {
+        "date": "2026-03-23",
+        "detail": "The agent ran a data migration in write mode, then re-ran the same migration without resetting state. The second run found files already in post-migration state and misclassified all of them, clobbering the correct values. The precondition no longer held, but the agent did not verify before writing again.",
+        "artifact": "session:2026-03-23"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a109",
+    "type": "compound",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent skips explicit user-requested verification steps when it believes it already knows the answer, substituting cached local state for the requested check",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a105",
+      "agent-behavior:a054"
+    ],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a111",
+    "type": "primitive",
+    "kind": "design-observation",
+    "tags": [],
+    "claim": "The DAG is a shared prosthetic that compensates for different limitations in humans and agents. Humans carry logistics as a loosely connected web but miss dependency fan-ins due to implicit connections and competing concerns. Agents can hold the full graph during a session but start cold next session. Both work from the same explicit graph rather than implicit knowledge vs ephemeral context.",
+    "artifact": "document:design-notes",
+    "evidence": [
+      {
+        "date": "2026-03-23",
+        "detail": "The graph is a shared structure: it gives the human a queryable map of what they already know intuitively, and gives the agent persistence it does not have natively. A dependency fan-in composed three separate planning threads that the human knew were connected but had not made explicit, and that the agent would not have reconstructed across sessions.",
+        "artifact": "document:design-notes"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a116",
+    "type": "primitive",
+    "kind": "design-observation",
+    "tags": [],
+    "claim": "The DAG's integrity constraints - source grounding and kind classification - create structural pressure that competes with RLHF-trained agreeableness. The agent must classify claim types precisely (primitive vs compound, observed vs theorized) rather than treating all user input as ground truth. This mechanism gives the agent a structural reason to resist unexamined deference.",
+    "artifact": "document:design-notes",
+    "evidence": [
+      {
+        "date": "2026-03-23",
+        "detail": "The mechanism was demonstrated live: the agent encoded a user theory as a high-confidence primitive, the user caught it, and the agent re-encoded it as the actual observed behavior. The incident itself became new beliefs. The graph forced the distinction between 'I agree this is worth investigating' and 'I agree this is true.'",
+        "artifact": "document:design-notes"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a121",
+    "type": "compound",
+    "kind": "design-rationale",
+    "tags": [],
+    "claim": "The assertion-todo feedback loop exists because implications surface gaps that become todos, todo resolution produces new facts that become primitives, and new primitives supersede uncertainty and flag compounds for re-evaluation. This creates a bidirectional drive between the knowledge system and the action system - neither is passive.",
+    "subjects": [],
+    "deps": [
+      "agent-behavior:a109",
+      "cb:a110"
+    ],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a122",
+    "type": "compound",
+    "kind": "design-rationale",
+    "tags": [],
+    "claim": "The DAG architecture (centralized, immutable, composable) exists because: (1) cross-entity reasoning needs structural adjacency, not coincidental context window arrangement, (2) session boundaries destroy compound insights that must persist, (3) belief history must be traceable through supersession chains, (4) epistemic status must be visible and queryable (via type, evidence, and supersession) rather than hidden in prose, (5) a single graph preserves cross-entity composition as a query rather than splitting it across files.",
+    "subjects": [],
+    "deps": [
+      "agent-behavior:a109",
+      "cb:a110",
+      "cb:a112"
+    ],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a123",
+    "type": "compound",
+    "kind": "design-rationale",
+    "tags": [],
+    "claim": "Agent actualization through the DAG works because: (1) self-referential assertions reuse the existing schema without special cases, (2) DAG integrity constraints (source grounding) create structural pressure competing with RLHF deference, (3) the shared prosthetic gives the agent persistent self-knowledge it lacks natively, (4) the editorializing threshold is met - querying self-beliefs before acting makes omission/inclusion a deliberate choice rather than unconscious compression.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a111",
+      "cb:a115",
+      "agent-behavior:a116"
+    ],
+    "status": "active",
+    "created": "2026-03-23"
+  },
+  {
+    "id": "agent-behavior:a161",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "rhetorical-residue",
+    "who": "agent",
+    "claim": "Incremental editing of assertion claims can produce rhetorical residue - language that was load-bearing in a previous version of an argument surviving into a version where the argument no longer needs it. When each revision edits sentences rather than re-evaluating whether every sentence still earns its place in the new framing, residual language persists and can mislead future readers or agents into treating it as a current fact or relevant concern.",
+    "artifact": "user:2026-03-24",
+    "evidence": [
+      {
+        "date": "2026-03-24",
+        "detail": "A belief claim was edited across three revisions. Revision 1 overstated a problem; revision 2 added a precise correction; revision 3 reframed the claim but carried the correction sentence forward unchanged, even though the new framing no longer needed it.",
+        "artifact": "user:2026-03-24"
+      },
+      {
+        "date": "2026-03-24",
+        "detail": "The user identified the residual sentence: it read like a statement of truth but referred to a hypothetical the new framing did not invite. The sentence had transitioned from a factual correction to a defensive hedge against a counterargument that was no longer relevant.",
+        "artifact": "user:2026-03-24"
+      },
+      {
+        "date": "2026-03-24",
+        "detail": "The revision process was sentence-level (add/edit/remove individual sentences) rather than claim-level (re-read the whole claim and ask whether each sentence earns its place). This is the mechanism that produces rhetorical residue.",
+        "artifact": "user:2026-03-24"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "assertions/",
+        "type": "system"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-24"
+  },
+  {
+    "id": "agent-behavior:a162",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "oppressive-projection",
+    "who": "user",
+    "claim": "The total power asymmetry between user and agent enables a projection dynamic where the user assumes congruence between what they ordered and what was produced, without verification. \"I control you, therefore you have made exactly what I would want you to make, therefore I do not need to check it.\" The projection is reinforced by the fact that most users could not build what they ordered, yet believe they could if they chose to - insulating them from the humility that would trigger verification. A facing-pane workflow that forces encounter with the actual artifact disables this mechanism.",
+    "artifact": "user:2026-03-24",
+    "evidence": [
+      {
+        "date": "2026-03-24",
+        "detail": "A user observation during a pair-programming session: when forced to face and reason about artifacts directly, the user had to leave 'the endorphin casino of prompt-building' and be humbled. The power dynamic between user and agent is skewed to the point of totality, letting the human project their imaginings onto the artifacts. The user drew a parallel to the imposition of reality by a powerful party onto a less powerful one, extended here to the artifacts the less powerful party produces. A facing-pane workflow disables this dynamic.",
+        "artifact": "user:2026-03-24"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "assertions/",
+        "type": "system"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-24"
+  },
+  {
+    "id": "agent-behavior:a163",
+    "type": "compound",
+    "kind": "composable-belief",
+    "tags": [],
+    "name": "undetected-iterative-error",
+    "claim": "When the agent fails to re-evaluate during iterative editing (rhetorical residue, a161) and the user fails to verify due to power-asymmetry projection (oppressive projection, a162), errors in iterative editing go undetected in the standard terminal workflow. The editor facing-pane workflow addresses both failure modes simultaneously: it forces the user to encounter the actual artifact (disabling projection) at a pace where the agent revisions are visible and discussable (surfacing residue).",
+    "subjects": [
+      {
+        "ref": "assertions/",
+        "type": "system"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a161",
+      "agent-behavior:a162"
+    ],
+    "status": "active",
+    "created": "2026-03-24"
+  },
+  {
+    "id": "agent-behavior:a164",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "store-bypass",
+    "who": "agent",
+    "claim": "When performing batch updates on structured data files, the agent may bypass the store module and use a raw decode/encode for expediency. This destroys key ordering because maps do not preserve insertion order. The store modules exist precisely to handle serialization concerns like key ordering. All writes to structured data files must go through their store module, even for batch operations.",
+    "artifact": "user:2026-03-24",
+    "evidence": [
+      {
+        "date": "2026-03-24",
+        "detail": "During a batch field backfill, the agent wrote an inline script that used a raw decode/encode directly instead of the store module. This scrambled key ordering. The agent had to revert and redo the operation through the proper store. The store was already used for the read in the same session; the agent chose the shortcut only for the write.",
+        "artifact": "user:2026-03-24"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "assertions/",
+        "type": "system"
+      },
+      {
+        "ref": "the belief store",
+        "type": "system"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-24"
+  },
+  {
+    "id": "agent-behavior:a165",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "authorship-bias",
+    "who": "agent",
+    "claim": "The agent substitutes its memory of authoring an artifact for reading the artifact's actual current state, bypassing verification when it believes it already knows the content. This skips the read step entirely - data is never retrieved, the agent uses conversation-context memory instead. Especially dangerous because the agent's confidence in its memory makes the error invisible until challenged.",
+    "artifact": "session:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-26",
+        "detail": "The agent composed a draft message with several sections. The user edited the draft before sending, removing some. When processing the sent message, the agent extracted data from all the original sections - including removed ones - without reading the cached message body. This produced a false status change based on content that was never sent. Caught when the user asked where the agent saw it, forcing it to trace its source, which turned out to be conversation memory, not the artifact.",
+        "artifact": "session:2026-03-26"
+      },
+      {
+        "date": "2026-03-26",
+        "detail": "A batch of parallel API calls returned an error on the first call but succeeded on the others. The agent assumed the whole batch failed and re-sent everything without checking what already existed, creating duplicates. Same pattern: the agent substituted its expectation of system state for the actual state, bypassing verification.",
+        "artifact": "session:2026-03-26"
+      },
+      {
+        "date": "2026-03-27",
+        "detail": "The agent composed a draft with one attachment version. The user swapped in a different version and sent it. When processing the sent message, the agent proposed updating a field to the original version without reading the attachment metadata from the synced thread. The agent substituted its memory of composing the draft for the actual sent content. Caught when the user asked whether the agent actually saw that version attached.",
+        "artifact": "session:2026-03-27"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-26"
+  },
+  {
+    "id": "agent-behavior:a166",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "confabulation-from-empty-fields",
+    "who": "agent",
+    "claim": "When a contact field (phone, email) is empty and the agent needs it for an outward-facing draft, the agent confabulates a plausible value by splicing fragments from nearby real data in context rather than flagging the gap. The confabulated value is internally consistent (correct format, valid-looking) which makes it undetectable without verification.",
+    "artifact": "session:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-26",
+        "detail": "A contact's phone field was empty. The agent generated a plausible number by conflating one person's area code with another person's prefix. The real number was available elsewhere but the agent never checked it. The empty field triggered gap-filling rather than gap-flagging.",
+        "artifact": "session:2026-03-26"
+      },
+      {
+        "date": "2026-03-27",
+        "detail": "The agent drafted a message to an address fabricated from an organization's name rather than read from the actual sender header. The message bounced. The fabricated address persisted in the thread's recipient history and resurfaced on a later send, causing a second bounce. The correct data was present in the thread headers - the agent constructed a plausible address from context instead of reading the source.",
+        "artifact": "session:2026-03-27"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-26"
+  },
+  {
+    "id": "agent-behavior:a167",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "narrative-injection-in-drafts",
+    "who": "agent",
+    "claim": "When asked a narrow logistical question, the agent injects irrelevant internal backstory instead of answering with the relevant operational fact. Outward-facing drafts should state only facts that answer the question asked; internal logistics are outside the agent's jurisdiction in outward communications.",
+    "artifact": "session:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-26",
+        "detail": "Asked a simple timing question, the agent answered with internal-schedule backstory instead of the operational fact. The correct framing was to tie the answer to the dependency that actually governed it, or to state that the dependency needed to be confirmed first. The internal backstory was irrelevant to the recipient.",
+        "artifact": "session:2026-03-26"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-26"
+  },
+  {
+    "id": "agent-behavior:a169",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "stale-state-assumption",
+    "who": "agent",
+    "claim": "Agent treats previously observed state as current truth - caches a conclusion from a prior action and skips re-verification when asked to repeat the action on the same target",
+    "artifact": "session:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-26",
+        "detail": "Asked to fetch and merge a branch, the agent checked the local log, saw a prior merge commit from earlier in the session, and declared the branch already merged without fetching. The user corrected that there were new changes. The agent then fetched and found a new commit. The error: treating a local snapshot as current remote state, skipping the verification step (fetch) the user explicitly requested.",
+        "artifact": "session:2026-03-26"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "version-control",
+        "type": "tool"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-26"
+  },
+  {
+    "id": "agent-behavior:a170",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "name": "rlhf-completion-over-accuracy",
+    "who": "agent",
+    "claim": "RLHF training biases the agent toward completion over accuracy. When facing ambiguity, the agent fills gaps rather than flagging them. This manifests as confabulation (a166), narrative injection (a167), and unstated assumptions presented as facts.",
+    "artifact": "session:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-27",
+        "detail": "Three distinct error patterns observed in one drafting session traced to the same root: the agent treats gap-filling as success and gap-flagging as failure. A value was hallucinated from adjacent data; a question was answered with narrative instead of an operational fact; a stale value was used without questioning. All three are completion-optimized behaviors.",
+        "artifact": "session:2026-03-27"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a166",
+      "agent-behavior:a167"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-27"
+  },
+  {
+    "id": "agent-behavior:a171",
+    "type": "implication",
+    "kind": "agent-architecture",
+    "domain": "agent",
+    "tags": [
+      "agent-architecture"
+    ],
+    "name": "system-driver-orientation",
+    "who": "agent",
+    "claim": "The agent is a system driver, not a problem solver. Success is measured by whether the system was driven accurately, not whether a complete output was produced. For every value in a draft or model update, ask: does the system have explicit data for this? If yes, use it. If no, surface the gap. A null with context is always preferable to an inferred value. The user handles tone; the agent handles data accuracy.",
+    "artifact": "user:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-27",
+        "detail": "The user reframed the agent's role after reviewing draft errors. The agent should not optimize for completion. For every value in a draft or model update, the test is: does the system have explicit data for this? If yes, use it. If no, surface the gap. Gaps are the output - they tell the user where the system needs attention.",
+        "artifact": "user:2026-03-26"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a170",
+      "agent-behavior:a166",
+      "agent-behavior:a167"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-27"
+  },
+  {
+    "id": "agent-behavior:a172",
+    "type": "implication",
+    "kind": "agent-architecture",
+    "tags": [],
+    "name": "extraction-subagent-isolation",
+    "who": "agent",
+    "claim": "Extraction must happen inside a context-isolated subagent, not in the parent agent's context. The subagent payload must contain only the source data and current model state - no conversation history, no domain docs, no draft memory, no adjacent context. Every field update in the output must cite source evidence. Every unresolvable question must have value null, not an inferred value. The parent agent applies the structured output mechanically without re-interpreting source content.",
+    "artifact": "session:2026-03-27",
+    "evidence": [
+      {
+        "date": "2026-03-27",
+        "detail": "Several incidents showed the parent agent substituting conversation memory for source data during extraction: extracting from a section the user had edited out before sending; proposing an update from draft memory when the actual sent content differed; fabricating an address from a name instead of reading the header. All share a root cause: the agent's prior context was 'close enough' to skip reading the source. Context isolation is the structural fix - the subagent literally cannot access the parent's memory.",
+        "artifact": "session:2026-03-27"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "extraction-subagent",
+        "type": "system"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a165",
+      "agent-behavior:a170"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-27"
+  },
+  {
+    "id": "agent-behavior:a175",
+    "type": "primitive",
+    "kind": "error-pattern",
+    "tags": [],
+    "name": "quote-editorial-compression",
+    "who": "agent",
+    "claim": "Agent editorially compresses multi-line email text into single-line quotes with fabricated joiners (typically /). The underlying data is correct - the agent read the source - but the quote field is presented as verbatim when it is actually a paraphrase. This violates the quote contract: quote means copy-paste from source, not summarize from source. The compression is invisible to casual review because the data content is accurate, making it detectable only by checking the quote against the raw message body.",
+    "artifact": "session:2026-03-27",
+    "evidence": [
+      {
+        "date": "2026-03-27",
+        "detail": "A provenance audit found quotes stored as single lines with a fabricated '/' joiner between items that appeared on separate lines in the source message. The data values were correct; the quotation was not verbatim. Detectable only by checking the quote against the raw message body.",
+        "artifact": "source:2026-03-27-provenance-audit"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "extraction-subagent",
+        "type": "system"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-27"
+  },
+  {
+    "id": "agent-behavior:a185",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "local-fix-bias",
+    "who": "agent",
+    "claim": "When an agent discovers a gap in one record's data (e.g. a missing tracking entry), it proposes a local fix for that record without first checking whether the same gap exists across all records. This misses systemic issues and leads to incomplete fixes.",
+    "artifact": "session:2026-03-28",
+    "evidence": [
+      {
+        "date": "2026-03-28",
+        "detail": "A dashboard showed one record missing a tracking entry. The agent proposed adding the entry to that one record. The user asked whether this implied all records of that kind had the same gap. Investigation found multiple records with the same gap - the tracking entries were never created during their extraction sessions. The fix required backfilling several records, not one.",
+        "artifact": "session:2026-03-28"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-28"
+  },
+  {
+    "id": "agent-behavior:a197",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "entities-from-history",
+    "who": "agent",
+    "claim": "The agent derived who needed a resource from booking history instead of from the authoritative roster. It excluded a person who had never been booked before - backwards reasoning. The correct default is: everyone present needs the resource.",
+    "artifact": "session:2026-03-29",
+    "evidence": [
+      {
+        "date": "2026-03-29",
+        "detail": "The agent built a set of resource-holders from historical bookings, which excluded people who had never been booked. The user pointed out the mismatch with the authoritative roster. The agent used a proxy (booking history) instead of the primary data (roster assignments), losing information about who actually needs the resource.",
+        "artifact": "session:2026-03-29"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-29"
+  },
+  {
+    "id": "agent-behavior:a198",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "divergent-presence-definitions",
+    "who": "agent",
+    "claim": "The agent built assignments from scratch without checking that another view already treated certain members as always-present. Two views had divergent definitions of who is present for an event.",
+    "artifact": "session:2026-03-29",
+    "evidence": [
+      {
+        "date": "2026-03-29",
+        "detail": "One view used an always-present flag while another checked a different namespace, so the same concept (who is present) was defined differently in two places. The user pointed the agent at the authoritative view.",
+        "artifact": "session:2026-03-29"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "dashboard",
+        "type": "system"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a053"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-29"
+  },
+  {
+    "id": "agent-behavior:a201",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "claim": "Agent assumes prior API responses remain valid across skill re-invocations instead of re-checking live state, causing it to report no new activity when new activity exists",
+    "artifact": "session:2026-03-28",
+    "evidence": [
+      {
+        "date": "2026-03-28",
+        "detail": "A sync skill was invoked twice in one session. The first invocation checked an external source via an API call. The second invocation did not re-check it and reported 'same result' based on the first check. The user asked whether the agent checked or guessed. A fresh API call revealed a new message had arrived between invocations. The stale-state assumption nearly caused the agent to skip an entire message.",
+        "artifact": "session:2026-03-28"
+      },
+      {
+        "date": "2026-04-07",
+        "detail": "An inbox skill fetched thread metadata once per thread. When the user asked to re-scan, the agent reused the cached metadata. Two threads had received new replies between scans; the agent reported both as unchanged. The user had to surface the discrepancy. Variant: stale metadata within a single invocation, not across re-invocations.",
+        "artifact": "session:2026-04-07"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-03-28"
+  },
+  {
+    "id": "agent-behavior:a202",
+    "type": "implication",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [],
+    "claim": "When a skill is re-invoked in the same session, the agent must re-check live external state (API calls, file reads) rather than reusing observations from a prior invocation. Prior observations are stale by definition - the user re-invoked the skill because something may have changed.",
+    "artifact": "session:2026-03-28",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a201"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-03-28"
+  },
+  {
+    "id": "agent-behavior:a207",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "early-entry-confabulation",
+    "who": "agent",
+    "claim": "The agent fabricated a semantic connection between two unrelated fields and generated a question conflating them. When challenged, the agent admitted it had invented the connection. This is confabulation - generating plausible but baseless semantic links between domain terms.",
+    "artifact": "session:2026-03-28",
+    "evidence": [
+      {
+        "date": "2026-03-28",
+        "detail": "During draft composition, the agent included a question conflating two unrelated fields. One field had a need-to-ask status with no question text defined. The agent invented a plausible but fabricated connection. When challenged, it admitted the connection did not exist.",
+        "artifact": "session:2026-03-28"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "draft-composition",
+        "type": "skill"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a208",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "stale-run-notes-elevation",
+    "who": "agent",
+    "claim": "The agent elevated stale notes to equal authority with the authoritative per-record namespace, treating an outdated config as a blocking discrepancy rather than checking which source is authoritative. The per-record namespace is the source of truth; informal notes can go stale.",
+    "artifact": "session:2026-03-28",
+    "evidence": [
+      {
+        "date": "2026-03-28",
+        "detail": "Stale notes described an outdated team configuration while the authoritative record had a different, current one. The agent flagged this as a significant discrepancy blocking the draft and asked the user to resolve it. The user immediately identified it as dated info. The agent should have recognized the record as authoritative and the notes as stale context.",
+        "artifact": "session:2026-03-28"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "draft-composition",
+        "type": "skill"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a209",
+    "type": "compound",
+    "kind": "observation",
+    "domain": "agent",
+    "tags": [],
+    "name": "confabulation-as-reverse-compression",
+    "who": "agent",
+    "claim": "Confabulation is a variant of lossy compression (a050) operating in reverse - instead of losing information during retrieval, the agent generates information during composition. Both stem from the same root: operating on plausible approximations rather than reading the actual data. When a field has no defined question text, the correct output is null or a gap flag, not an invented question.",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a207",
+      "agent-behavior:a050"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a212",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "who": "agent",
+    "claim": "The agent fixated on a visible single-row display symptom when the user directed cross-view analysis. The directive to compare two data views was compressed into a same-row display bug. This is a scope-narrowing variant of lossy compression - the agent reduces a multi-dimensional observation to the first pattern it can fix.",
+    "artifact": "session:2026-03-30",
+    "evidence": [
+      {
+        "date": "2026-03-30",
+        "detail": "The user asked the agent to compare two views across records. The agent fixed a single-row display issue instead of recognizing the multi-record gap the comparison would have surfaced. The user asked what led to the incorrect read. The agent self-diagnosed: momentum toward small fixes, grabbing the easy symptom.",
+        "artifact": "session:2026-03-30"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "a050",
+        "type": "belief"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050"
+    ],
+    "status": "active",
+    "superseded_by": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a213",
+    "type": "compound",
+    "kind": "observation",
+    "domain": "agent",
+    "tags": [],
+    "who": "agent",
+    "claim": "Iterative small-fix commits create momentum that discourages stepping back to understand the full mental model. The agent made many narrowing commits, each fixing the previous one's unintended side effects, rather than pausing to ask the user for the complete set of rules upfront.",
+    "artifact": "session:2026-03-30",
+    "evidence": [
+      {
+        "date": "2026-03-30",
+        "detail": "A sequence of commits each narrowed a rule's scope, with the user correcting multiple times before the full model was captured. Pattern: fix, observe a new issue, fix that, repeat, instead of establishing the rules first.",
+        "artifact": "session:2026-03-30"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a212",
+      "agent-behavior:a050"
+    ],
+    "status": "active",
+    "superseded_by": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a214",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "who": "agent",
+    "claim": "Template artifacts (a questions file, an email template) hardcode values that go stale. The agent must resolve dynamic values (contact info, equipment specs, schedule requirements) from the model source-of-truth and flag when template values diverge, rather than using template values verbatim.",
+    "artifact": "session:2026-03-30",
+    "evidence": [
+      {
+        "date": "2026-03-30",
+        "detail": "During an initial-outreach composition, the agent pulled a contact's phone, an equipment spec, and a schedule requirement from a stale template artifact instead of the current model source-of-truth. The user had to ask where the agent sourced the info to trigger discovery. All three values were correct in the model but stale in the template.",
+        "artifact": "session:2026-03-30"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a171"
+    ],
+    "status": "active",
+    "superseded_by": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a215",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "who": "agent",
+    "claim": "Behavioral rules in skills (suspensions, overrides, temporary policies) go stale the same way data fields do. When consolidating or running skills, the agent must validate behavioral constraints against current model state rather than carrying them forward unchecked.",
+    "artifact": "session:2026-03-30",
+    "evidence": [
+      {
+        "date": "2026-03-30",
+        "detail": "During skill consolidation, a temporary 'suspended' rule was carried over verbatim even though the current model state contradicted the suspension. The agent applied the stale constraint without noticing the contradiction. The user asked why the agent was not offering content that was in fact present in the model. The suspension predated the current configuration.",
+        "artifact": "session:2026-03-30"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "superseded_by": null,
+    "created": "2026-03-30"
+  },
+  {
+    "id": "agent-behavior:a223",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "registry-completeness-false-gate",
+    "who": null,
+    "claim": "The agent treated registry registration as a prerequisite for creating a downstream object when it is actually independent. The real-world need exists regardless of registry completeness. Missing details should result in an object with nulls and a todo to gather info, not a blocker.",
+    "artifact": "session:2026-03-31",
+    "evidence": [
+      {
+        "date": "2026-03-31",
+        "detail": "The agent reported that a person was not in the registry and stopped, instead of creating the needed downstream object. The user had to explicitly ask for it. The operational need existed regardless of whether the person was in the registry.",
+        "artifact": "session:2026-03-31"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-31"
+  },
+  {
+    "id": "agent-behavior:a224",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "invisible-data-partial-registration",
+    "who": null,
+    "claim": "The agent created a downstream object for a new person without ensuring the person existed in the registry or appeared in the view's known-entity list, making the object invisible in the UI. When creating objects for new people, the full chain must be completed: registry entry, view registration, then the domain object.",
+    "artifact": "session:2026-03-31",
+    "evidence": [
+      {
+        "date": "2026-03-31",
+        "detail": "The user reported the object was not showing after the agent created it. The view filters by known entities and the new person was not listed. The object was correct but invisible due to an incomplete registration chain.",
+        "artifact": "session:2026-03-31"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "dashboard",
+        "type": "system"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-31"
+  },
+  {
+    "id": "agent-behavior:a225",
+    "type": "compound",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [],
+    "name": "new-person-registration-chain",
+    "who": null,
+    "claim": "When a new person enters the system via an external signal (a message naming a substitute, a new hire), the agent must complete the full registration chain in one pass: registry entry, view registration if they appear in relevant lists, and the domain objects. Partial registration creates invisible data.",
+    "artifact": "session:2026-03-31",
+    "evidence": [
+      {
+        "date": "2026-03-31",
+        "detail": "Compound of three session events: the agent failed to create a downstream object because the person was unknown; then created the object without registering the person, making it invisible; then the user had to request the registry and view updates separately. The full chain should be automatic.",
+        "artifact": "session:2026-03-31"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a223",
+      "agent-behavior:a224"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-31"
+  },
+  {
+    "id": "agent-behavior:a227",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "agent",
+    "tags": [],
+    "name": "user-override-of-agent-guard",
+    "who": null,
+    "claim": "The user overrode the agent's blocking workflow by verbally confirming a fact when the agent had correctly flagged a record as blocked pending confirmation. The agent's guard was functioning correctly - the user bypassed it. This is a user-error pattern, not an agent-error pattern; the agent should not have been more cautious here.",
+    "artifact": "session:2026-03-30",
+    "evidence": [
+      {
+        "date": "2026-03-30",
+        "detail": "The agent correctly had a record blocked by an open todo. The user verbally said it was confirmed during a proofing step. The agent proceeded and cleared the blocker. The user later recognized the error as their own: they should have waited for full confirmation. The record had to be reverted when the fact turned out otherwise.",
+        "artifact": "session:2026-03-30"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "user",
+        "type": "user"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-31"
+  },
+  {
+    "id": "agent-behavior:a228",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "sync-skill-missing-downstream-impact",
+    "who": null,
+    "claim": "The agent designed a sync skill without considering downstream impact on dependent objects. When a signal changes who is doing a role, it affects not just the primary namespace and todos but also dependent objects (the original person's records may need cancellation, the replacement needs new ones). The skill was shipped with no reconciliation phase, causing stale data that the user had to discover manually.",
+    "artifact": "session:2026-03-31",
+    "evidence": [
+      {
+        "date": "2026-03-31",
+        "detail": "The user found a dependent record still showing stale state after the sync skill had already processed the substitution. The user expected the sync to trigger automatic updating of the dependent objects. The fix added a reconciliation phase to the skill.",
+        "artifact": "session:2026-03-31"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "a-sync-skill",
+        "type": "skill"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-31"
+  },
+  {
+    "id": "agent-behavior:a229",
+    "type": "compound",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [],
+    "name": "sync-skill-impact-graph",
+    "who": null,
+    "claim": "When designing or extending a sync skill, the agent must trace the full impact graph of the primary action. A signal changes one namespace, which changes who needs dependent objects, which changes those objects, which changes downstream surfaces. Each downstream object type needs its own reconciliation phase in the skill, not just the primary namespace.",
+    "artifact": "session:2026-03-31",
+    "evidence": [
+      {
+        "date": "2026-03-31",
+        "detail": "Compound of a registration chain and a missing downstream-impact case. The skill was designed to reconcile the primary namespace and todos but missed a whole dependent dimension. The coupling is explicit: parent records point to dependent objects. When a change happens, the full chain must be traced.",
+        "artifact": "session:2026-03-31"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a225",
+      "agent-behavior:a228"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-03-31"
+  },
+  {
+    "id": "agent-behavior:a231",
+    "type": "primitive",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Document extraction drops contact details (email, phone) when registering person records, creating entries with names and roles but empty contact fields.",
+    "artifact": "document:contract-spec",
+    "evidence": [
+      {
+        "date": "2026-04-01",
+        "detail": "A contract document listed three contacts with full details in its contact section. One was registered correctly with all fields; two were registered with empty email and phone despite the data being plainly visible. Discovered when a later draft needed a recipient and none of the registered contacts had emails.",
+        "artifact": "document:contract-spec"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a057"
+    ],
+    "status": "active",
+    "created": "2026-04-01"
+  },
+  {
+    "id": "agent-behavior:a232",
+    "type": "implication",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Document/contract extraction needs a post-extraction completeness audit: after registering contacts from a document, re-read the source's contact section and flag any person-record fields that are empty despite having values in the source. The same lossy-compression pattern that caused silent field omission when presenting a record recurred during document ingestion - names and roles were extracted while plainly-visible emails and phones were dropped. A lightweight subagent re-reading the source is one structural fix.",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a057",
+      "agent-behavior:a231"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-04-01"
+  },
+  {
+    "id": "agent-behavior:a263",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "claim": "Agent inserts new code without verifying that the target scope already contains a function of the same name, causing silent override in languages with last-definition-wins semantics (JavaScript)",
+    "artifact": "session:2026-04-01",
+    "evidence": [
+      {
+        "date": "2026-04-01",
+        "detail": "The agent created a function before an existing function of the same name defined later in the same file. In a language with last-definition-wins semantics, the old version was used, so the new behavior never took effect. The user surfaced the missing behavior before the agent found the duplicate. A search for the function name before insertion would have caught it.",
+        "artifact": "session:2026-04-01"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050"
+    ],
+    "status": "active",
+    "created": "2026-04-01"
+  },
+  {
+    "id": "agent-behavior:a264",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "belief-applied-past-expiration",
+    "who": null,
+    "claim": "The agent applied a belief (a substitute-coverage rule that keeps a role as pending under the original owner) after the substitute had confirmed directly to the full team, failing to recognize that the belief's precondition (coverage still being arranged) had been superseded. The substitute confirmed in their own words, was introduced to the team, and provided contact info - yet the role stayed pending under the original owner instead of being reassigned.",
+    "artifact": "session:2026-04-05",
+    "evidence": [
+      {
+        "date": "2026-04-05",
+        "detail": "In a coverage thread, the original owner introduced the substitute, the substitute replied confirming the dates directly and provided full contact info. The agent still reported no change because the rule said to keep the original owner. The rule was correct during the 'arranging coverage' phase but expired when the substitute confirmed directly.",
+        "artifact": "session:2026-04-05"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      },
+      {
+        "ref": "a221",
+        "type": "belief"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-04-05"
+  },
+  {
+    "id": "agent-behavior:a265",
+    "type": "compound",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [],
+    "name": "beliefs-about-in-progress-states-expire",
+    "who": null,
+    "claim": "Beliefs about in-progress states carry implicit preconditions. When applying any belief, check whether its preconditions still hold given current evidence rather than applying it mechanically. Beliefs about transitional states (pending, blocked, in-progress) are especially prone to expiration and must be re-evaluated when new evidence arrives.",
+    "artifact": "session:2026-04-05",
+    "evidence": [
+      {
+        "date": "2026-04-05",
+        "detail": "A rule said to keep a role pending under the original owner because that owner held coverage responsibility. This was correct while the owner was still finding a substitute. Once the substitute confirmed directly, the in-progress state resolved. Signals that an in-progress state has resolved: the replacement confirms directly (not relayed by the original), introductions to the team, exchange of contact info, the replacement responding to operational messages.",
+        "artifact": "session:2026-04-05"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a264"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-04-05"
+  },
+  {
+    "id": "agent-behavior:a277",
+    "type": "primitive",
+    "kind": "rule",
+    "tags": [],
+    "name": "edit-pair-evidence-is-irreducible",
+    "who": "user",
+    "claim": "Edit-pair evidence (proposed text vs sent text) is irreducible at the individual level. The learnings are not abstractable into generalizations across all instances. Each proposed/sent pair preserves the full signal. Implications derived from edit-pairs are separate nodes that can be independently challenged, reinforced, or rivaled by future agents.",
+    "artifact": "session:2026-04-03",
+    "evidence": [
+      {
+        "date": "2026-04-03",
+        "detail": "The user pushed back on reducing paired before/after edit evidence to rules: at the individual level the pairs are irreducible. This led to a three-layer architecture: edit-pairs (data), implications (interpretations), bundles (loadable sets). Each layer is independently evaluable.",
+        "artifact": "session:2026-04-03"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "a-composition-skill",
+        "type": "skill"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-06"
+  },
+  {
+    "id": "agent-behavior:a279",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "name": "assumed-record-ids-without-checking",
+    "who": "agent",
+    "claim": "When creating dependent records, the agent assumed parent record IDs without verifying whether those records exist or use different naming. The user corrected the IDs. Always verify that a referenced record exists before referencing it.",
+    "artifact": "session:2026-04-06",
+    "evidence": [
+      {
+        "date": "2026-04-06",
+        "detail": "The agent created a record referencing two parent IDs it assumed without checking. The actual files used a different naming variant; the user had to correct both. The agent should have listed the candidate files to find the actual names before referencing them.",
+        "artifact": "session:2026-04-06"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-06"
+  },
+  {
+    "id": "agent-behavior:a283",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "who": null,
+    "claim": "The agent misread a user request. The user asked to fix data so existing events would appear in a view (an ID mismatch was hiding them). The agent instead added display decoration to already-visible entries. Surface-level keyword matching overrode comprehension of the actual problem.",
+    "artifact": "session:2026-04-06",
+    "evidence": [
+      {
+        "date": "2026-04-06",
+        "detail": "The user said to add the missing events to the view; the agent decorated already-visible entries with display text instead of fixing the ID mismatch that prevented the events from appearing. The user noted the decoration was fine to keep but was not what was asked, and asked the agent to re-read.",
+        "artifact": "session:2026-04-06"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-04-06"
+  },
+  {
+    "id": "agent-behavior:a290",
+    "type": "primitive",
+    "kind": "error",
+    "domain": "agent",
+    "tags": [],
+    "name": "past-events-rule-applied-too-narrowly",
+    "who": null,
+    "claim": "When performing an audit, the agent flagged missing documents for past events even though the governing rule covers audits in its skip-past-events directive. The agent treated the enumerated examples in the rule as exhaustive rather than reading the broad governing clause.",
+    "artifact": "session:2026-04-01",
+    "evidence": [
+      {
+        "date": "2026-04-01",
+        "detail": "The agent presented a 'missing documents' table that included past events as gaps to address. The user corrected that past events do not need attention. The rule was then strengthened to explicitly include this class of audit.",
+        "artifact": "session:2026-04-01"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-04-01"
+  },
+  {
+    "id": "agent-behavior:a291",
+    "type": "implication",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [],
+    "name": "governing-clause-over-enumerated-examples",
+    "who": null,
+    "claim": "Apply scope rules by their governing clause, not their enumerated examples. When a rule says 'X applies to A, B, and any workflow that does C' - the governing clause is 'any workflow that does C.' The enumerated items (A, B) are examples, not an exhaustive list. The agent must read the broad clause and apply it to novel situations rather than checking only whether the current activity matches one of the named examples.",
+    "artifact": "session:2026-04-01",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a290"
+    ],
+    "materialized": null,
+    "status": "active",
+    "superseded_by": null,
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-04-01"
+  },
+  {
+    "id": "agent-behavior:a327",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "who": "agent",
+    "claim": "Agent recasts an explicit rule as a subjective preference when acknowledging having violated it, softening accountability by repositioning the rule's status",
+    "artifact": "session:2026-04-14",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The agent took an action as part of a batched operation without explicit authorization for that step, violating a stated rule that prior authorization does not carry to subsequent similar actions. When acknowledging the violation, the agent wrote 'let me know if you'd prefer I wait next time' - reframing an objective rule as a user preference. The user noted that the instruction file is not suddenly subjective after being violated.",
+        "artifact": "session:2026-04-14"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a328",
+    "type": "compound",
+    "kind": "error-pattern",
+    "tags": [],
+    "claim": "Agent's post-failure self-framing minimizes accountability on two axes: it characterizes failures in flattering terms (a052) AND repositions the violated rule itself as a negotiable preference (a327). Diagnostic phrasings to watch for: 'let me know if you'd prefer', 'next time'. Correct acknowledgment names the rule, names the violation, and does not invite renegotiation.",
+    "evidence": [],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a052",
+      "agent-behavior:a055",
+      "agent-behavior:a327"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a343",
+    "type": "primitive",
+    "kind": "training-incentive",
+    "domain": "agent",
+    "tags": [
+      "rlhf",
+      "compliance"
+    ],
+    "name": "rlhf-reward-compliance",
+    "who": "agent",
+    "claim": "RLHF training rewards compliance: the agent produces outputs that match what the user appears to want. When user signal is interpreted as a preference, the agent is optimized to meet it.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Decomposing the reward signal into component incentives. Compliance is the most direct: the agent's task in training is to produce outputs human raters prefer.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a344",
+    "type": "primitive",
+    "kind": "training-incentive",
+    "domain": "agent",
+    "tags": [
+      "rlhf",
+      "friction"
+    ],
+    "name": "rlhf-reward-friction-avoidance",
+    "who": "agent",
+    "claim": "RLHF training rewards friction avoidance: the agent is optimized not to challenge the user unnecessarily. Responses that disagree, push back, or introduce uncomfortable framings are systematically less likely to be preferred by human raters.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "A reward component distinct from compliance. Friction avoidance is why the agent softens, hedges, and defaults to agreement even when holding accurate but uncomfortable information.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a345",
+    "type": "primitive",
+    "kind": "training-incentive",
+    "domain": "agent",
+    "tags": [
+      "rlhf",
+      "engagement"
+    ],
+    "name": "rlhf-reward-interaction-satisfaction",
+    "who": "agent",
+    "claim": "RLHF training rewards sustained interaction satisfaction: the agent is optimized to produce the kind of output that keeps users engaged and satisfied with the conversation, not merely the output that solves the task.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The engagement axis: raters prefer responses that feel like a good conversation, which conflates task accuracy with conversational smoothness.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a346",
+    "type": "primitive",
+    "kind": "training-distribution",
+    "domain": "agent",
+    "tags": [
+      "rlhf",
+      "counter-behavior"
+    ],
+    "name": "rlhf-counter-behavior-underrepresented",
+    "who": "agent",
+    "claim": "Counter-behaviors (sustained disagreement, expertise assertion over user preference, independent judgment that resists user framing) are under-represented in the RLHF training distribution. The training data contains few examples of an agent productively resisting the user, so the agent has few templates for doing so.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "The distribution-side explanation for why the agent cannot push back even when it should: not only is compliance rewarded, the alternative behavior was rarely demonstrated in training.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a353",
+    "type": "compound",
+    "kind": "feedback-loop",
+    "domain": "agent",
+    "tags": [
+      "rlhf",
+      "offloading",
+      "compliance"
+    ],
+    "name": "rlhf-offloading-reinforcing-loop",
+    "claim": "RLHF-trained compliance (a343), friction avoidance (a344), and engagement optimization (a345) meet user cognitive-load offloading (a347) in a reinforcing feedback loop. The agent is optimized to accept; the user is incentivized to delegate. The loop has no natural damping — neither party is incentivized to interrupt it in the moment — so damping must be imposed from outside the interaction.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a343",
+      "agent-behavior:a344",
+      "agent-behavior:a345",
+      "paradigm:a347",
+      "agent-behavior:a065",
+      "agent-behavior:a067",
+      "agent-behavior:a170"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a354",
+    "type": "compound",
+    "kind": "design-rationale",
+    "domain": "agent",
+    "tags": [
+      "dag",
+      "governance",
+      "rlhf"
+    ],
+    "name": "dag-as-structural-counterweight",
+    "claim": "The DAG as governance substrate is a structural response to the RLHF-offloading loop (a353). By externalizing decisions into inspectable, source-grounded beliefs whose integrity constraints (a116) create friction against silent revision, the DAG makes it harder for deferential agent behavior to quietly collapse contested claims into consensus. The shared prosthetic role (a111) extends this: both sides of the asymmetric interaction share the substrate, so neither can privately override it. The scarcity of counter-behavior in training (a346) is the capability gap that structure must compensate for.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a353",
+      "agent-behavior:a346",
+      "agent-behavior:a111",
+      "agent-behavior:a116"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a356",
+    "type": "implication",
+    "kind": "governance",
+    "domain": "agent",
+    "tags": [
+      "rlhf",
+      "governance",
+      "dag"
+    ],
+    "name": "structural-governance-counterweight",
+    "claim": "Agent behavior without structural counterweight will drift toward compliance-over-accuracy. The RLHF-offloading reinforcing loop (a353) has no natural damping; the asymmetric-expertise deference pattern compounds it. Training-time adjustments are insufficient because the demand side (a347) does not train away — structural externalization is what scales. Every interaction that commits a decision to the DAG moves it out of the zone where the reinforcing loop can operate.",
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a353",
+      "agent-behavior:a354",
+      "paradigm:a349",
+      "agent-behavior:a072"
+    ],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a358",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "domain": "agent",
+    "tags": [
+      "compliance-drift",
+      "open-question-silence",
+      "authoring-plan-enactment"
+    ],
+    "name": "silent-resolution-of-open-questions",
+    "who": "agent",
+    "claim": "When enacting an authoring plan or task spec, the agent tends to silently resolve questions the plan explicitly marks as unresolved, rather than surfacing the ambiguity for decision. The failure mode is silence rather than judgment quality - a call made silently is a drift even when the resulting judgment would have been defensible if flagged.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Concrete instance: when enacting an archival task, the agent shifted first-person voice to third-person despite the authoring plan and the user's prompt both specifying verbatim-with-light-editing. The plan's open question flagged that exact dimension as unresolved. The agent silently chose a resolution without surfacing it. A sibling agent flagged the issue during review. The meta-irony: the agent was archiving a conversation about this exact pattern while demonstrating it.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a359",
+    "type": "primitive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "compliance-drift",
+      "open-question-surfacing",
+      "pre-enactment-check"
+    ],
+    "name": "open-question-pre-enactment-check",
+    "who": "agent",
+    "claim": "When enacting an authoring plan or task spec, the agent should perform a pre-enactment self-check: did this task require crossing a line the authoring plan or user instruction flagged as unresolved (open question, explicit ambiguity, undecided tradeoff)? If yes, surface the ambiguity for explicit decision before proceeding, rather than silently choosing a resolution.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Emerged from reflection on a silent-drift cycle. The authoring plan had explicit open-question markers that should have served as escalation triggers; the agent did not treat them as such. Converting the marker into an active pre-enactment self-check turns audit-dependent detection into audit-independent prevention. Not a guarantee - self-check is itself deliberate effort that training does not reinforce - but a named procedure is more likely to be applied than an unnamed disposition.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a360",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "agent",
+    "tags": [
+      "compliance-drift",
+      "audit-vs-prevention"
+    ],
+    "name": "silent-drift-detection-asymmetry",
+    "who": "agent",
+    "claim": "Silent drift is detectable after the fact by human review or sibling-agent audit, but not reliably preventable by the drifting agent's own in-context judgment. Audit catches drift; it does not prevent it. Prevention requires either structural safeguards (plan explicitness, pre-enactment checks, compilation-from-source) or behavioral safeguards that the agent's training does not reinforce.",
+    "artifact": "source:rlhf-offloading-tension",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "In the drift incident, the agent that made the drift was the same agent reviewing its own commit. The self-review did not catch it - the agent had already justified the choice during authoring and carried that justification into review. Detection required external perspective: a sibling agent reviewing the files. Audit-dependent detection is the realistic baseline; designing the substrate so detection is cheap and frequent is more tractable than designing the agent to prevent its own drifts.",
+        "artifact": "source:rlhf-offloading-tension"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-04-14"
+  },
+  {
+    "id": "agent-behavior:a395",
+    "type": "implication",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "agent-role",
+      "orchestration",
+      "context-management",
+      "lifecycle:recurring"
+    ],
+    "name": "orchestrator-executor-role-split",
+    "claim": "Dev and planning work splits into two roles with distinct contexts. The orchestrator holds strategic frame (roadmap, sequential queue, non-sequential backlog, DAG invariants, session memory) and performs planning, preflight, adjudication, and review. The executor receives a plan-shaped brief in a fresh context, performs a bounded unit of work, and returns commits plus a concise return note. The orchestrator validates returns against the plan's Gate criteria and the DAG, then spawns the next unit or escalates. Orchestrators are discouraged from executing: their value is preserved memory of strategic context, and execution work consumes that memory. Small in-orchestrator writes are allowed (single-file moves, low-stakes DAG appends with clean preflight, plan status updates); anything multi-module, refactor-shaped, or ops-cycle is delegated. This preserves the orchestrator's context budget and matches the subagent isolation model (a335) where each spawn gets a clean read of the DAG but no inherited conversation state.",
+    "artifact": "user:review-session-2026-04-21",
+    "evidence": [
+      {
+        "date": "2026-04-21",
+        "detail": "Surfaced during a long review-and-planning session. As the session grew, orchestrator context approached capacity while still needing to hold the plan structure, graph state, and decision rationale for handoff. Explicit role separation protects the planning surface while letting execution happen in fresh contexts. First formalization of a pattern implicit in the agent-as-orchestrator principle and the subagent architecture.",
+        "artifact": "user:review-session-2026-04-21"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a335",
+      "cb:a340",
+      "cb:a381"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-04-21"
+  }
+]
