@@ -4,6 +4,7 @@
     "cb": "../composable-beliefs/beliefs/beliefs.json",
     "agent-behavior": "agent-behavior/beliefs.json",
     "paradigm": "paradigm/beliefs.json",
-    "lib": "library/beliefs.json"
+    "lib": "library/beliefs.json",
+    "sdl": "eval-provenance/beliefs.json"
   }
 }

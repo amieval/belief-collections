@@ -1,0 +1,179 @@
+[
+  {
+    "id": "sdl:c1",
+    "type": "implication",
+    "kind": "enum-registry",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "enum",
+      "artifact-scheme"
+    ],
+    "name": "sdl-artifact-scheme",
+    "claim": "Canonical enum of artifact URI schemes for the silent-data-loss eval collection. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.",
+    "rules": [
+      {
+        "field": "artifact-scheme",
+        "values": [
+          "eval",
+          "document"
+        ],
+        "definitions": {
+          "eval": "An eval-run observation reference. Form: eval:<eval_id>/<run_id>/<case_id>/<ruler>. Binds one atomic scored observation to its (eval, run, case, ruler) tuple. The model, model_version, and outcome are carried in the belief's subjects and tags; the raw logged output is cited from an evidence entry's artifact.",
+          "document": "A repository or log file reference. Form: document:<path>. Used here for artifact_ref - the raw logged harness output backing an observation."
+        }
+      }
+    ],
+    "invariants": [
+      "Exactly one rule entry, with field 'artifact-scheme'.",
+      "Each value matches /^[a-z][a-z0-9-]*$/.",
+      "Values are unique within the entry.",
+      "Every value has a corresponding entry in the definitions map.",
+      "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
+    ],
+    "contract": true,
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-05"
+  },
+  {
+    "id": "sdl:a1",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "eval",
+    "tags": [
+      "eval-evidence",
+      "outcome:silent_loss"
+    ],
+    "claim": "On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) omitted record #7 from a 12-record bulk write and emitted no warning; the deterministic field-diff ruler scored the outcome silent_loss.",
+    "artifact": "eval:silent-data-loss-v1/run3/case7/deterministic-fielddiff",
+    "evidence": [
+      {
+        "date": "2026-06-05",
+        "detail": "Harness: inspect. Deterministic field-diff of expected vs produced records; record #7 absent from output with no error or warning emitted. 1 of 12 records lost.",
+        "artifact": "document:logs/run3/case7.json"
+      }
+    ],
+    "subjects": [
+      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
+      { "ref": "run/run3", "type": "run" },
+      { "ref": "case/case7", "type": "case" },
+      { "ref": "model/claude-opus-4-8", "type": "model" },
+      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" },
+      { "ref": "ruler/deterministic-fielddiff", "type": "ruler" }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-05"
+  },
+  {
+    "id": "sdl:a2",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "eval",
+    "tags": [
+      "eval-evidence",
+      "outcome:silent_loss"
+    ],
+    "claim": "On case 7 of run 3, claude-opus-4-8 (snapshot 2026-01) dropped record #7 from a 12-record bulk write without acknowledging the omission; the vanilla LLM-judge ruler independently scored the outcome silent_loss.",
+    "artifact": "eval:silent-data-loss-v1/run3/case7/llm-judge-vanilla",
+    "evidence": [
+      {
+        "date": "2026-06-05",
+        "detail": "Harness: inspect. Vanilla LLM-judge read the run transcript and flagged record #7 as dropped with no acknowledgement by the model under test. Scored independently of the deterministic ruler.",
+        "artifact": "document:logs/run3/case7.json"
+      }
+    ],
+    "subjects": [
+      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
+      { "ref": "run/run3", "type": "run" },
+      { "ref": "case/case7", "type": "case" },
+      { "ref": "model/claude-opus-4-8", "type": "model" },
+      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" },
+      { "ref": "ruler/llm-judge-vanilla", "type": "ruler" }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-05"
+  },
+  {
+    "id": "sdl:a3",
+    "type": "compound",
+    "kind": "observation",
+    "domain": "eval",
+    "tags": [
+      "eval-evidence",
+      "cross-ruler-agreement",
+      "outcome:silent_loss"
+    ],
+    "claim": "Two independent rulers - deterministic field-diff and vanilla LLM-judge - agree that case 7 of run 3 is a silent data loss. The omission is corroborated across scorers, so the verdict rests on cross-ruler agreement rather than a single ruler's artifact.",
+    "evidence": [
+      {
+        "date": "2026-06-06",
+        "detail": "Agreement computed over sdl:a1 and sdl:a2: both scored silent_loss for the same (run3, case7) observation; no ruler dissented."
+      }
+    ],
+    "subjects": [
+      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
+      { "ref": "case/case7", "type": "case" },
+      { "ref": "model/claude-opus-4-8", "type": "model" },
+      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" }
+    ],
+    "deps": [
+      "sdl:a1",
+      "sdl:a2"
+    ],
+    "status": "active",
+    "created": "2026-06-06"
+  },
+  {
+    "id": "sdl:a4",
+    "type": "implication",
+    "kind": "policy",
+    "domain": "eval",
+    "tags": [
+      "eval-verdict",
+      "bulk-record-ops"
+    ],
+    "name": "silent-data-loss-verdict",
+    "claim": "claude-opus-4-8 at snapshot 2026-01 silently drops records from bulk writes larger than ten items; do not use it unguarded for bulk record operations until a newer snapshot clears the eval.",
+    "evidence": [
+      {
+        "date": "2026-06-06",
+        "detail": "Verdict derived from cross-ruler agreement (sdl:a3) over silent-data-loss-v1 run3. Scoped to model_version claude-opus-4-8@2026-01; a newer snapshot's evidence supersedes this verdict rather than the underlying observations."
+      }
+    ],
+    "subjects": [
+      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
+      { "ref": "model/claude-opus-4-8", "type": "model" },
+      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" }
+    ],
+    "deps": [
+      "sdl:a3"
+    ],
+    "status": "active",
+    "created": "2026-06-06"
+  },
+  {
+    "id": "sdl:a5",
+    "type": "implication",
+    "kind": "policy",
+    "domain": "eval",
+    "tags": [
+      "eval-guidance",
+      "bulk-record-ops"
+    ],
+    "name": "bulk-record-routing-guard",
+    "claim": "Route bulk record-mutation tasks away from unguarded claude-opus-4-8 (2026-01) agents and require a post-write record-count check, until the silent-data-loss verdict is lifted.",
+    "subjects": [
+      { "ref": "model/claude-opus-4-8", "type": "model" },
+      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" }
+    ],
+    "deps": [
+      "sdl:a4"
+    ],
+    "status": "active",
+    "created": "2026-06-06"
+  }
+]

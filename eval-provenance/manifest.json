@@ -1,0 +1,5 @@
+{
+  "namespace": "sdl",
+  "depends_on": [],
+  "description": "Worked example for the eval: evidence-provenance capability. One published eval (silent-data-loss-v1) in miniature: atomic scored observations as primitives carrying an eval: artifact URI plus structured provenance in subjects/tags/evidence, a cross-ruler agreement compound, a model-version-scoped verdict implication, and the downstream guidance that rests on it. Self-contained: declares its own artifact-scheme enum (eval, document) so it verifies standalone; in a real deployment it would instead depend_on cb: and use cb:'s artifact-scheme registry extended with the eval scheme. kind/domain are intentionally left to skip (borrowed from cb: in real use)."
+}
