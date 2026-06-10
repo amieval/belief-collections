@@ -1,0 +1,5 @@
+{
+  "namespace": "toy",
+  "depends_on": ["method"],
+  "description": "Toy eval collection authored against the method: base - plan-0's acceptance fixture. Zero local schema contracts: every vocabulary check is satisfied by borrowed method: contracts. Designed to pass all six methodology contracts: three runs, two rulers (one an LLM judge with a judge-validation record), a cross-ruler-agreement compound, and a corroborated verdict. Entirely synthetic, so every belief carries the fixture tag per method:a5 - nothing here is a finding."
+}

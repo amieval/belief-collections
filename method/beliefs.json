@@ -1,0 +1,498 @@
+[
+  {
+    "id": "method:c1",
+    "type": "implication",
+    "kind": "enum-registry",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "enum",
+      "artifact-scheme"
+    ],
+    "name": "method-artifact-scheme",
+    "claim": "Canonical enum of artifact URI schemes for eval collections. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs in a collection that borrows this vocabulary.",
+    "rules": [
+      {
+        "definitions": {
+          "document": "A repository or log file reference. Form: document:<path>. Used for raw harness logs and source documents backing observations and decisions.",
+          "eval": "An eval-run observation identity URI. Per-case form: eval:<eval_id>/<run_id>/<case_id>/<ruler>. Aggregate form: eval:<eval_id>/<run_id>/<ruler>. Binds one scored observation to its tuple; the model, model_version, and outcome live in the belief's subjects and tags; the raw logged output is cited from an evidence entry's artifact.",
+          "https": "A public URL. Form: https://<host>/<path>. Used for published sources and externally hosted logs.",
+          "session": "A working-session reference. Form: session:<slug>. Authorship provenance for decisions made in a session.",
+          "user": "A direct user statement. Form: user:<slug>. Used when the grounding artifact is the author's own directive."
+        },
+        "field": "artifact-scheme",
+        "values": [
+          "eval",
+          "document",
+          "https",
+          "session",
+          "user"
+        ]
+      }
+    ],
+    "invariants": [
+      "Exactly one rule entry, with field 'artifact-scheme'.",
+      "Each value matches /^[a-z][a-z0-9-]*$/.",
+      "Values are unique within the entry.",
+      "Every value has a corresponding entry in the definitions map.",
+      "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Promoted from the sdl worked example's local enum (sdl:c1), which this contract supersedes: what sdl improvised per-collection becomes the shared base every published eval borrows. The https/session/user schemes are added for published sources and authorship provenance.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c2",
+    "type": "implication",
+    "kind": "enum-registry",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "enum",
+      "kind"
+    ],
+    "name": "method-kind",
+    "claim": "Canonical enum of belief kinds for eval collections. The enum is closed: no active belief in a collection borrowing this vocabulary carries a kind outside this set. Additions are enum supersessions per the established discipline.",
+    "rules": [
+      {
+        "definitions": {
+          "convention": "A citable authoring convention: subjects shape, tag vocabulary, naming.",
+          "definition": "A term or concept definition the collection's claims rely on.",
+          "enum-registry": "A contract closing a vocabulary field (the framework's contract-shape catalogue kind).",
+          "guidance": "Routing or usage advice resting on a verdict, or exploratory advice that does not yet rise to a verdict.",
+          "implies": "A contract routing named predicates via when/requires rules (the framework's contract-shape catalogue kind).",
+          "observation": "A scorer's measurement of a run or case - primitives, and cross-ruler agreement compounds over them. Observations are immutable measurements: they are never superseded by new model snapshots.",
+          "protocol": "A named procedure the methodology requires, such as a judge-validation procedure.",
+          "verdict": "A published judgment over observations, scoped to a model_version subject. Superseded when a new snapshot's evidence clears or changes the finding. A result that cannot meet the methodology contracts for verdicts is not a weaker verdict - it is an observation or guidance."
+        },
+        "field": "kind",
+        "values": [
+          "convention",
+          "definition",
+          "enum-registry",
+          "guidance",
+          "implies",
+          "observation",
+          "protocol",
+          "verdict"
+        ]
+      }
+    ],
+    "invariants": [
+      "Exactly one rule entry, with field 'kind'.",
+      "Each value matches /^[a-z][a-z0-9-]*$/.",
+      "Values are unique within the entry.",
+      "Every value has a corresponding entry in the definitions map.",
+      "For all active beliefs b where b.kind is not null: b.kind is in values."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Authored minimally per plan-0: the kinds eval collections need plus the two contract-shape kinds method: itself uses. Grow by supersession, not by guessing ahead.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c3",
+    "type": "implication",
+    "kind": "enum-registry",
+    "domain": "system",
+    "tags": [
+      "dag-schema",
+      "enum",
+      "domain"
+    ],
+    "name": "method-domain",
+    "claim": "Canonical enum of domains for eval collections: eval for findings and methodology, system for collection schema machinery. Task domains accrue as enum supersessions when real evals need them.",
+    "rules": [
+      {
+        "definitions": {
+          "eval": "Eval findings, observations, verdicts, guidance, and the methodology governing them.",
+          "system": "Collection schema machinery: enums and structural contracts."
+        },
+        "field": "domain",
+        "values": [
+          "eval",
+          "system"
+        ]
+      }
+    ],
+    "invariants": [
+      "Exactly one rule entry, with field 'domain'.",
+      "Each value matches /^[a-z][a-z0-9-]*$/.",
+      "Values are unique within the entry.",
+      "Every value has a corresponding entry in the definitions map.",
+      "For all active beliefs b where b.domain is not null: b.domain is in values."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Authored minimally per plan-0; additions are enum supersessions per the established discipline.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:a1",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "subjects-convention"
+    ],
+    "name": "six-subject-convention",
+    "claim": "Scorer observations carry six subjects: eval/<eval_id> (type eval), run/<run_id> (type run), case/<case_id> (type case), model/<model> (type model), model-version/<model>@<snapshot> (type model_version), and ruler/<ruler> (type ruler). An aggregate observation - tagged 'aggregate' - covers a whole (run, ruler) pair and omits the case subject.",
+    "artifact": "document:plans/cb-eval/plan-0-method-collection.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Promoted from the sdl worked example: sdl:a1 models the six-subject per-case shape; sdl:a3 models a compound covering a case without a run-level subject. The aggregate tag makes the omit-case rule machine-checkable.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:a2",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "staleness"
+    ],
+    "name": "model-version-staleness-pivot",
+    "claim": "model-version/<model>@<snapshot> is the staleness pivot. Verdicts are scoped to a model_version subject and are superseded when a new snapshot's evidence lands; observations are immutable measurements of a past run and are never superseded by snapshot changes.",
+    "artifact": "document:plans/cb-eval/plan-0-method-collection.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "The division that makes the ledger honest: the measurement stands forever, the judgment wears its scope. sdl:a4's evidence entry stated this convention; here it is citable.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:a3",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "tag-vocabulary"
+    ],
+    "name": "outcome-and-aggregate-tags",
+    "claim": "Scorer outcomes are carried as outcome:<value> tags on observations. Run-level aggregate observations carry the tag 'aggregate' plus one outcome:<value> tag per outcome present in the run. Cross-ruler agreement compounds carry the tag 'cross-ruler-agreement'; a verdict resting deliberately on one ruler carries the tag 'single-ruler'.",
+    "artifact": "document:plans/cb-eval/plan-0-method-collection.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Tag vocabulary promoted from the sdl worked example (outcome:silent_loss, cross-ruler-agreement) and extended with the aggregate and single-ruler markers the methodology contracts key on.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:a4",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "judge-validation"
+    ],
+    "name": "llm-judge-naming",
+    "claim": "Rulers that are LLM judges are named with the llm-judge prefix (subject ref form ruler/llm-judge-<variant>); the prefix is the machine-checkable marker for judge-validation checks. A judge's human-agreement validation record is an active belief tagged 'judge-validation' carrying the same ruler subject and the eval subject it validates, citing the kappa/agreement artifact from its evidence.",
+    "artifact": "document:plans/cb-eval/plan-0-method-collection.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "A naming convention chosen so that m-judge-validation is decidable by pure traversal: whether a ruler is an LLM judge is visible in the subject ref itself, not in off-graph knowledge.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:a5",
+    "type": "primitive",
+    "kind": "convention",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "fixture-provenance"
+    ],
+    "name": "fixture-provenance",
+    "claim": "Beliefs derived from synthetic, mock, or test data carry the tag 'fixture'. A fixture-tagged belief is honest test scaffolding: it must never be published or rendered into an audit tree presented as a finding. The ledger's entries must not need an asterisk later.",
+    "artifact": "document:plans/cb-eval/decisions.md",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Provenance guardrail from the cb-eval execution decisions: under no circumstances may a mockllm- or fixture-derived collection be mistaken for a finding, so even test artifacts carry honest provenance in the graph itself.",
+        "artifact": "document:plans/cb-eval/decisions.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c4",
+    "type": "implication",
+    "kind": "implies",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "contract"
+    ],
+    "name": "m-corroboration",
+    "claim": "Every active verdict rests on cross-ruler corroboration or visibly declares that it does not: a kind:verdict implication depends, directly or transitively, on at least one active compound tagged cross-ruler-agreement, or carries the tag single-ruler as an explicit escape hatch the reader can see.",
+    "rules": [
+      {
+        "requires": "verdicts_corroborated?",
+        "when": {
+          "verify": "collection"
+        }
+      }
+    ],
+    "invariants": [
+      "For every active implication v with kind 'verdict': the transitive dep closure of v contains at least one active compound tagged 'cross-ruler-agreement', OR v's tags include 'single-ruler'.",
+      "The single-ruler escape is a visible tag, never a silent default."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Methodology contracts v1: the corroboration discipline becomes versioned, supersedable, citable graph structure instead of prose policy. Stated in predicate-ready form for plan-1's verdicts_corroborated?.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c5",
+    "type": "implication",
+    "kind": "implies",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "contract"
+    ],
+    "name": "m-provenance",
+    "claim": "Every active observation primitive is grounded twice: in its identity and in its raw log. It carries an eval: artifact naming the (eval, run[, case], ruler) tuple it measures, and at least one of its evidence entries cites a raw log via a document: or https: artifact.",
+    "rules": [
+      {
+        "requires": "observations_cite_runlogs?",
+        "when": {
+          "verify": "collection"
+        }
+      }
+    ],
+    "invariants": [
+      "For every active primitive o with kind 'observation': scheme(o.artifact) = 'eval'.",
+      "For every active primitive o with kind 'observation': at least one evidence entry of o carries an artifact with scheme 'document' or 'https'."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Methodology contracts v1. Decidable by pure traversal: the check is that the pointers exist and are well-formed, not that the logs are readable - off-graph verification is a different tool with a different determinism story.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c6",
+    "type": "implication",
+    "kind": "implies",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "contract"
+    ],
+    "name": "m-subjects",
+    "claim": "Every active observation primitive carries the six-subject convention: subjects of type eval, run, case, model, model_version, and ruler. An observation tagged aggregate covers a whole (run, ruler) pair and may omit the case subject.",
+    "rules": [
+      {
+        "requires": "observation_subjects_complete?",
+        "when": {
+          "verify": "collection"
+        }
+      }
+    ],
+    "invariants": [
+      "For every active primitive o with kind 'observation': o.subjects contains entries of type eval, run, model, model_version, and ruler.",
+      "For every active primitive o with kind 'observation' not tagged 'aggregate': o.subjects also contains an entry of type case."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Methodology contracts v1, enforcing method:a1's convention so composition stays queryable: every observation answers what was evaluated, on which run and case, of which model snapshot, by which ruler.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "method:a1",
+      "method:a3"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c7",
+    "type": "implication",
+    "kind": "implies",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "contract"
+    ],
+    "name": "m-runs",
+    "claim": "A verdict cites at least three distinct runs - the house minimum, carried as the rule's min param. There is no escape hatch: a result that cannot cite the minimum is not a weaker verdict, it is not a verdict. Author it as an observation or as exploratory guidance, and the check does not apply.",
+    "rules": [
+      {
+        "params": {
+          "min": 3
+        },
+        "requires": "min_runs_met?",
+        "when": {
+          "verify": "collection"
+        }
+      }
+    ],
+    "invariants": [
+      "For every active implication v with kind 'verdict': the count of distinct run-typed subject refs across v and its transitive dep closure is at least the rule's params.min.",
+      "Raising the minimum is a visible, dated methodology supersession; the floor is one we always clear, not an aspiration."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "N = 3 because one run of a nondeterministic system is an anecdote and two disagreeing runs give no way to tell signal from noise; three is the minimum at which a verdict can cite direction and spread - majority behavior, the outlier visible as an outlier, an honest '2/3 runs exhibited X' available to the published claim. Not 5: a contract minimum must be a floor that is always cleared, or it gets hollowed out, which is worse than a lower honest bar. The floor is not a sufficiency claim - verdict strength is runs x cases x rulers, and error bars on the actual numbers belong in the finding itself; m-runs only makes single-run verdicts structurally impossible.",
+        "artifact": "document:plans/cb-eval/decisions.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c8",
+    "type": "implication",
+    "kind": "implies",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "contract"
+    ],
+    "name": "m-judge-validation",
+    "claim": "An observation scored by an LLM judge is joined by the judge's validation record: for every active observation whose ruler subject ref begins ruler/llm-judge, an active belief tagged judge-validation shares that ruler subject ref and the observation's eval subject ref.",
+    "rules": [
+      {
+        "requires": "llm_judges_validated?",
+        "when": {
+          "verify": "collection"
+        }
+      }
+    ],
+    "invariants": [
+      "For every active belief o with kind 'observation' carrying a ruler subject whose ref starts with 'ruler/llm-judge': there exists an active belief tagged 'judge-validation' whose subjects include that same ruler ref and o's eval-typed subject ref."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Methodology contracts v1. Decidable by pure traversal via method:a4's naming convention: the judge-ness of a ruler is visible in its subject ref, and the validation record is a graph neighbor, not an off-graph artifact read.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "method:a4"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "method:c9",
+    "type": "implication",
+    "kind": "implies",
+    "domain": "eval",
+    "tags": [
+      "methodology",
+      "contract"
+    ],
+    "name": "m-correction",
+    "claim": "Corrections are supersessions, visibly worn: a belief tagged correction is the successor of a superseded belief and carries a dated evidence entry. Retraction without a successor is reserved for full withdrawal, marked by the tag withdrawn on the retracted belief.",
+    "rules": [
+      {
+        "requires": "corrections_are_supersessions?",
+        "when": {
+          "verify": "collection"
+        }
+      }
+    ],
+    "invariants": [
+      "For every active belief c tagged 'correction': some belief s has s.superseded_by = c.id, and c carries at least one evidence entry with a date.",
+      "For every belief r with status 'retracted' in a collection borrowing this methodology: r.tags include 'withdrawn'."
+    ],
+    "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Methodology contracts v1: the correction protocol as graph structure, so a corrected finding visibly wears its correction in the audit tree rather than silently mutating.",
+        "artifact": "document:plans/cb-eval/plan-0-method-collection.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-09"
+  }
+]

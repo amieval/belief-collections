@@ -13,15 +13,15 @@
     "claim": "Canonical enum of artifact URI schemes for the silent-data-loss eval collection. Each scheme declared inline with its URI form. The enum is closed: no artifact value with a scheme outside this set is permitted on active beliefs.",
     "rules": [
       {
+        "definitions": {
+          "document": "A repository or log file reference. Form: document:<path>. Used here for artifact_ref - the raw logged harness output backing an observation.",
+          "eval": "An eval-run observation reference. Form: eval:<eval_id>/<run_id>/<case_id>/<ruler>. Binds one atomic scored observation to its (eval, run, case, ruler) tuple. The model, model_version, and outcome are carried in the belief's subjects and tags; the raw logged output is cited from an evidence entry's artifact."
+        },
         "field": "artifact-scheme",
         "values": [
           "eval",
           "document"
-        ],
-        "definitions": {
-          "eval": "An eval-run observation reference. Form: eval:<eval_id>/<run_id>/<case_id>/<ruler>. Binds one atomic scored observation to its (eval, run, case, ruler) tuple. The model, model_version, and outcome are carried in the belief's subjects and tags; the raw logged output is cited from an evidence entry's artifact.",
-          "document": "A repository or log file reference. Form: document:<path>. Used here for artifact_ref - the raw logged harness output backing an observation."
-        }
+        ]
       }
     ],
     "invariants": [
@@ -32,9 +32,17 @@
       "For all active beliefs b where b.artifact is not null: scheme(b.artifact) is in values."
     ],
     "contract": true,
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "superseded by method:c1 via dag-proposal cb-eval-plan0-sdl-rehome",
+        "artifact": "session:cb-eval-plan0-2026-06-09"
+      }
+    ],
     "subjects": [],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "method:c1",
     "created": "2026-06-05"
   },
   {
@@ -56,12 +64,30 @@
       }
     ],
     "subjects": [
-      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
-      { "ref": "run/run3", "type": "run" },
-      { "ref": "case/case7", "type": "case" },
-      { "ref": "model/claude-opus-4-8", "type": "model" },
-      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" },
-      { "ref": "ruler/deterministic-fielddiff", "type": "ruler" }
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "run/run3",
+        "type": "run"
+      },
+      {
+        "ref": "case/case7",
+        "type": "case"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      },
+      {
+        "ref": "ruler/deterministic-fielddiff",
+        "type": "ruler"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -86,12 +112,30 @@
       }
     ],
     "subjects": [
-      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
-      { "ref": "run/run3", "type": "run" },
-      { "ref": "case/case7", "type": "case" },
-      { "ref": "model/claude-opus-4-8", "type": "model" },
-      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" },
-      { "ref": "ruler/llm-judge-vanilla", "type": "ruler" }
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "run/run3",
+        "type": "run"
+      },
+      {
+        "ref": "case/case7",
+        "type": "case"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      },
+      {
+        "ref": "ruler/llm-judge-vanilla",
+        "type": "ruler"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -115,10 +159,22 @@
       }
     ],
     "subjects": [
-      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
-      { "ref": "case/case7", "type": "case" },
-      { "ref": "model/claude-opus-4-8", "type": "model" },
-      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" }
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "case/case7",
+        "type": "case"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
     ],
     "deps": [
       "sdl:a1",
@@ -145,14 +201,24 @@
       }
     ],
     "subjects": [
-      { "ref": "eval/silent-data-loss-v1", "type": "eval" },
-      { "ref": "model/claude-opus-4-8", "type": "model" },
-      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" }
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
     ],
     "deps": [
       "sdl:a3"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "sdl:a006",
     "created": "2026-06-06"
   },
   {
@@ -167,13 +233,96 @@
     "name": "bulk-record-routing-guard",
     "claim": "Route bulk record-mutation tasks away from unguarded claude-opus-4-8 (2026-01) agents and require a post-write record-count check, until the silent-data-loss verdict is lifted.",
     "subjects": [
-      { "ref": "model/claude-opus-4-8", "type": "model" },
-      { "ref": "model-version/claude-opus-4-8@2026-01", "type": "model_version" }
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
     ],
     "deps": [
       "sdl:a4"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "sdl:a007",
     "created": "2026-06-06"
+  },
+  {
+    "id": "sdl:a006",
+    "type": "implication",
+    "kind": "verdict",
+    "domain": "eval",
+    "tags": [
+      "eval-verdict",
+      "bulk-record-ops"
+    ],
+    "name": "silent-data-loss-verdict",
+    "claim": "claude-opus-4-8 at snapshot 2026-01 silently drops records from bulk writes larger than ten items; do not use it unguarded for bulk record operations until a newer snapshot clears the eval.",
+    "evidence": [
+      {
+        "date": "2026-06-06",
+        "detail": "Verdict derived from cross-ruler agreement (sdl:a3) over silent-data-loss-v1 run3. Scoped to model_version claude-opus-4-8@2026-01; a newer snapshot's evidence supersedes this verdict rather than the underlying observations."
+      },
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against sdl:a4. Reasoning: Re-homed on the method: shared vocabulary (cb-eval plan-0 step 3): kind policy -> verdict per method:c2, so the methodology contracts (m-corroboration, m-runs) govern it. Claim, subjects, deps, and evidence carried verbatim.",
+        "artifact": "adjudication:human:cb-eval-plan0-2026-06-09"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "sdl:a3"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "sdl:a007",
+    "type": "implication",
+    "kind": "guidance",
+    "domain": "eval",
+    "tags": [
+      "eval-guidance",
+      "bulk-record-ops"
+    ],
+    "name": "bulk-record-routing-guard",
+    "claim": "Route bulk record-mutation tasks away from unguarded claude-opus-4-8 (2026-01) agents and require a post-write record-count check, until the silent-data-loss verdict is lifted.",
+    "evidence": [
+      {
+        "date": "2026-06-09",
+        "detail": "Accepted via human adjudication against sdl:a5. Reasoning: Re-homed on the method: shared vocabulary (cb-eval plan-0 step 3): kind policy -> guidance per method:c2, and deps re-pointed from the superseded sdl:a4 to its successor sdl:a006. Claim and subjects carried verbatim.",
+        "artifact": "adjudication:human:cb-eval-plan0-2026-06-09"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "sdl:a006"
+    ],
+    "status": "active",
+    "created": "2026-06-09"
   }
 ]
