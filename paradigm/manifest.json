@@ -4,6 +4,5 @@
     "agent-behavior"
   ],
   "description": "Beliefs about the operating paradigm: meta-observations on how the human-agent system works and should work. Carries no schema vocabulary of its own - it uses the cb: enum and lifecycle contracts. Compositionally coupled with the agent-behavior: collection through mutual compound/implication deps, so the two co-resolve as a pair - the dep is load-bearing, not a citation to convert to provenance.",
-  "namespace": "paradigm",
-  "schema_version": 2
+  "namespace": "paradigm"
 }

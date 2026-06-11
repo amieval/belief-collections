@@ -1,6 +1,5 @@
 {
   "depends_on": [],
   "description": "The base collection every published eval collection depends on: the shared eval vocabulary (artifact-scheme, kind, and domain enums; the six-subject, staleness-pivot, tag, judge-naming, and fixture-provenance conventions) plus methodology contracts v1 (m-corroboration, m-provenance, m-subjects, m-runs, m-judge-validation, m-correction). The methodology version is the supersession state of these contracts: a methodology change is a batch of adjudicated supersessions, visible via bs history and citable from published posts. Self-contained: declares its own enums, so it verifies standalone.",
-  "namespace": "method",
-  "schema_version": 2
+  "namespace": "method"
 }
