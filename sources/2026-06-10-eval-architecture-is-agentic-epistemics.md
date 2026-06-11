@@ -135,10 +135,12 @@ existed nowhere except the session this document archives.
 
 ## Extraction notes (for /assert, post-schema-v2)
 
-Candidate beliefs, with this document as artifact (`document:sources/
-2026-06-10-eval-architecture-is-agentic-epistemics.md`, repo-relative to
-belief-collections, where the target collection lives) and the 2026-06-10
-session as evidence. Kinds per the framework enum; types given in v2 terms
+Superseded as the citation target: the claims now live in the position file
+`positions/2026-06-10-eval-architecture-is-agentic-epistemics.md`, which is
+what extracted beliefs cite as their `document:` artifact (this source document
+is the position's Origin; the 2026-06-10 session is evidence).
+
+Candidate beliefs as originally sketched: Kinds per the framework enum; types given in v2 terms
 (under v1, the inferences would author as compounds - prefer waiting for v2,
 where these are among the first native inferences).
 
