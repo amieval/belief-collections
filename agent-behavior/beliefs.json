@@ -170,12 +170,18 @@
   },
   {
     "id": "agent-behavior:a057",
-    "type": "implication",
+    "type": "inference",
     "kind": "error-pattern",
     "tags": [],
     "claim": "Unstructured data retrieval tasks need deterministic formatters - the agent should not be relied upon to present complete records from raw text. An incident showed silent field omission when presenting a record from grep output. The fix is structural (build a deterministic formatter that emits complete records), not behavioral.",
     "artifact": "user:2026-03-12",
-    "evidence": [],
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by agent-behavior:a396 in the v2 migration (mood re-home; see successor evidence).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
     "subjects": [
       {
         "ref": "agent",
@@ -186,7 +192,8 @@
       "agent-behavior:a050"
     ],
     "materialized": null,
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "agent-behavior:a396",
     "created": "2026-03-12"
   },
   {
@@ -413,10 +420,17 @@
   },
   {
     "id": "agent-behavior:a070",
-    "type": "implication",
+    "type": "inference",
     "kind": "reasoning-error",
     "tags": [],
     "claim": "A strategy document states a contested 'moat' claim as settled fact - it should be revised to present the argument as an untested theory with appropriate attribution.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by agent-behavior:a397 in the v2 migration (mood re-home; see successor evidence).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
     "subjects": [
       {
         "ref": "agent",
@@ -428,7 +442,8 @@
       "agent-behavior:a067"
     ],
     "materialized": null,
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "agent-behavior:a397",
     "created": "2026-03-13"
   },
   {
@@ -453,7 +468,7 @@
   },
   {
     "id": "agent-behavior:a072",
-    "type": "implication",
+    "type": "inference",
     "kind": "error-pattern",
     "tags": [],
     "claim": "RLHF deference produces epistemic collapse in agent-generated documents",
@@ -851,7 +866,7 @@
   },
   {
     "id": "agent-behavior:a123",
-    "type": "compound",
+    "type": "inference",
     "kind": "design-rationale",
     "tags": [],
     "claim": "Agent actualization through the DAG works because: (1) self-referential assertions reuse the existing schema without special cases, (2) DAG integrity constraints (source grounding) create structural pressure competing with RLHF deference, (3) the shared prosthetic gives the agent persistent self-knowledge it lacks natively, (4) the editorializing threshold is met - querying self-beliefs before acting makes omission/inclusion a deliberate choice rather than unconscious compression.",
@@ -1155,7 +1170,7 @@
   },
   {
     "id": "agent-behavior:a171",
-    "type": "implication",
+    "type": "inference",
     "kind": "agent-architecture",
     "domain": "agent",
     "tags": [
@@ -1170,6 +1185,11 @@
         "date": "2026-03-27",
         "detail": "The user reframed the agent's role after reviewing draft errors. The agent should not optimize for completion. For every value in a draft or model update, the test is: does the system have explicit data for this? If yes, use it. If no, surface the gap. Gaps are the output - they tell the user where the system needs attention.",
         "artifact": "user:2026-03-26"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by agent-behavior:a398 in the v2 migration (mood re-home; see successor evidence).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -1184,15 +1204,15 @@
       "agent-behavior:a167"
     ],
     "materialized": null,
-    "status": "active",
-    "superseded_by": null,
+    "status": "superseded",
+    "superseded_by": "agent-behavior:a398",
     "retracted_on": null,
     "retracted_reason": null,
     "created": "2026-03-27"
   },
   {
     "id": "agent-behavior:a172",
-    "type": "implication",
+    "type": "inference",
     "kind": "agent-architecture",
     "tags": [],
     "name": "extraction-subagent-isolation",
@@ -1204,6 +1224,11 @@
         "date": "2026-03-27",
         "detail": "Several incidents showed the parent agent substituting conversation memory for source data during extraction: extracting from a section the user had edited out before sending; proposing an update from draft memory when the actual sent content differed; fabricating an address from a name instead of reading the header. All share a root cause: the agent's prior context was 'close enough' to skip reading the source. Context isolation is the structural fix - the subagent literally cannot access the parent's memory.",
         "artifact": "session:2026-03-27"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by agent-behavior:a399 in the v2 migration (mood re-home; see successor evidence).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -1217,8 +1242,8 @@
       "agent-behavior:a170"
     ],
     "materialized": null,
-    "status": "active",
-    "superseded_by": null,
+    "status": "superseded",
+    "superseded_by": "agent-behavior:a399",
     "retracted_on": null,
     "retracted_reason": null,
     "created": "2026-03-27"
@@ -1385,7 +1410,7 @@
   },
   {
     "id": "agent-behavior:a202",
-    "type": "implication",
+    "type": "directive",
     "kind": "rule",
     "domain": "agent",
     "tags": [],
@@ -1689,7 +1714,7 @@
   },
   {
     "id": "agent-behavior:a225",
-    "type": "compound",
+    "type": "directive",
     "kind": "rule",
     "domain": "agent",
     "tags": [],
@@ -1789,7 +1814,7 @@
   },
   {
     "id": "agent-behavior:a229",
-    "type": "compound",
+    "type": "directive",
     "kind": "rule",
     "domain": "agent",
     "tags": [],
@@ -1849,11 +1874,17 @@
   },
   {
     "id": "agent-behavior:a232",
-    "type": "implication",
+    "type": "inference",
     "kind": "error-pattern",
     "tags": [],
     "claim": "Document/contract extraction needs a post-extraction completeness audit: after registering contacts from a document, re-read the source's contact section and flag any person-record fields that are empty despite having values in the source. The same lossy-compression pattern that caused silent field omission when presenting a record recurred during document ingestion - names and roles were extracted while plainly-visible emails and phones were dropped. A lightweight subagent re-reading the source is one structural fix.",
-    "evidence": [],
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by agent-behavior:a400 in the v2 migration (mood re-home; see successor evidence).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
     "subjects": [
       {
         "ref": "agent",
@@ -1865,7 +1896,8 @@
       "agent-behavior:a231"
     ],
     "materialized": null,
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "agent-behavior:a400",
     "created": "2026-04-01"
   },
   {
@@ -1928,7 +1960,7 @@
   },
   {
     "id": "agent-behavior:a265",
-    "type": "compound",
+    "type": "directive",
     "kind": "rule",
     "domain": "agent",
     "tags": [],
@@ -1961,7 +1993,7 @@
   },
   {
     "id": "agent-behavior:a277",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "tags": [],
     "name": "edit-pair-evidence-is-irreducible",
@@ -2076,7 +2108,7 @@
   },
   {
     "id": "agent-behavior:a291",
-    "type": "implication",
+    "type": "directive",
     "kind": "rule",
     "domain": "agent",
     "tags": [],
@@ -2326,7 +2358,7 @@
   },
   {
     "id": "agent-behavior:a356",
-    "type": "implication",
+    "type": "directive",
     "kind": "governance",
     "domain": "agent",
     "tags": [
@@ -2402,6 +2434,11 @@
         "date": "2026-04-14",
         "detail": "Emerged from reflection on a silent-drift cycle. The authoring plan had explicit open-question markers that should have served as escalation triggers; the agent did not treat them as such. Converting the marker into an active pre-enactment self-check turns audit-dependent detection into audit-independent prevention. Not a guarantee - self-check is itself deliberate effort that training does not reinforce - but a named procedure is more likely to be applied than an unnamed disposition.",
         "artifact": "source:rlhf-offloading-tension"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by agent-behavior:a401 in the v2 migration (mood re-home; see successor evidence).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -2411,7 +2448,8 @@
       }
     ],
     "deps": [],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "agent-behavior:a401",
     "created": "2026-04-14"
   },
   {
@@ -2446,7 +2484,7 @@
   },
   {
     "id": "agent-behavior:a395",
-    "type": "implication",
+    "type": "directive",
     "kind": "rule",
     "domain": "agent",
     "tags": [
@@ -2474,5 +2512,200 @@
     "materialized": null,
     "status": "active",
     "created": "2026-04-21"
+  },
+  {
+    "id": "agent-behavior:a396",
+    "type": "directive",
+    "kind": "rule",
+    "tags": [],
+    "claim": "Unstructured data retrieval tasks need deterministic formatters - the agent should not be relied upon to present complete records from raw text. An incident showed silent field omission when presenting a record from grep output. The fix is structural (build a deterministic formatter that emits complete records), not behavioral.",
+    "artifact": "user:2026-03-12",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "v2 re-home: the node's function is the operating rule (use deterministic formatters; never rely on the agent to present complete records from raw text) - violated, not falsified. The incident lives in the dep and in the claim as rationale prose, which directives may carry. Claim, name, tags, subjects, and deps carried verbatim from agent-behavior:a057.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a050"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "agent-behavior:a397",
+    "type": "directive",
+    "kind": "action-item",
+    "tags": [],
+    "claim": "A strategy document states a contested 'moat' claim as settled fact - it should be revised to present the argument as an untested theory with appropriate attribution.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "v2 re-home: a revise-this-document action - materializable, violated-or-done, not falsifiable. The finding it rests on (the contested claim stated as fact) is carried by its deps. Claim, name, tags, subjects, and deps carried verbatim from agent-behavior:a070.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a069",
+      "agent-behavior:a067"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "agent-behavior:a398",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "agent-architecture"
+    ],
+    "name": "system-driver-orientation",
+    "who": "agent",
+    "claim": "The agent is a system driver, not a problem solver. Success is measured by whether the system was driven accurately, not whether a complete output was produced. For every value in a draft or model update, ask: does the system have explicit data for this? If yes, use it. If no, surface the gap. A null with context is always preferable to an inferred value. The user handles tone; the agent handles data accuracy.",
+    "artifact": "user:2026-03-26",
+    "evidence": [
+      {
+        "date": "2026-03-27",
+        "detail": "The user reframed the agent's role after reviewing draft errors. The agent should not optimize for completion. For every value in a draft or model update, the test is: does the system have explicit data for this? If yes, use it. If no, surface the gap. Gaps are the output - they tell the user where the system needs attention.",
+        "artifact": "user:2026-03-26"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "v2 re-home: the driver-not-solver operating rule - violated when a value without explicit system data is fabricated rather than surfaced. The architecture rationale stays as prose; the rule is what the house stands behind. Claim, name, tags, subjects, and deps carried verbatim from agent-behavior:a171.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a170",
+      "agent-behavior:a166",
+      "agent-behavior:a167"
+    ],
+    "materialized": null,
+    "status": "active",
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-06-10"
+  },
+  {
+    "id": "agent-behavior:a399",
+    "type": "directive",
+    "kind": "rule",
+    "tags": [],
+    "name": "extraction-subagent-isolation",
+    "who": "agent",
+    "claim": "Extraction must happen inside a context-isolated subagent, not in the parent agent's context. The subagent payload must contain only the source data and current model state - no conversation history, no domain docs, no draft memory, no adjacent context. Every field update in the output must cite source evidence. Every unresolvable question must have value null, not an inferred value. The parent agent applies the structured output mechanically without re-interpreting source content.",
+    "artifact": "session:2026-03-27",
+    "evidence": [
+      {
+        "date": "2026-03-27",
+        "detail": "Several incidents showed the parent agent substituting conversation memory for source data during extraction: extracting from a section the user had edited out before sending; proposing an update from draft memory when the actual sent content differed; fabricating an address from a name instead of reading the header. All share a root cause: the agent's prior context was 'close enough' to skip reading the source. Context isolation is the structural fix - the subagent literally cannot access the parent's memory.",
+        "artifact": "session:2026-03-27"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "v2 re-home: the extraction-isolation rule (context-isolated subagent, evidence-cited field updates) - violated, not falsified. Why-content is carried by deps. Claim, name, tags, subjects, and deps carried verbatim from agent-behavior:a172.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "extraction-subagent",
+        "type": "system"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a165",
+      "agent-behavior:a170"
+    ],
+    "materialized": null,
+    "status": "active",
+    "retracted_on": null,
+    "retracted_reason": null,
+    "created": "2026-06-10"
+  },
+  {
+    "id": "agent-behavior:a400",
+    "type": "directive",
+    "kind": "rule",
+    "tags": [],
+    "claim": "Document/contract extraction needs a post-extraction completeness audit: after registering contacts from a document, re-read the source's contact section and flag any person-record fields that are empty despite having values in the source. The same lossy-compression pattern that caused silent field omission when presenting a record recurred during document ingestion - names and roles were extracted while plainly-visible emails and phones were dropped. A lightweight subagent re-reading the source is one structural fix.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "v2 re-home: the post-extraction completeness-audit rule - violated when extraction lands without the audit. The lossy-compression pattern it guards against is carried by deps. Claim, name, tags, subjects, and deps carried verbatim from agent-behavior:a232.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a057",
+      "agent-behavior:a231"
+    ],
+    "materialized": null,
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "agent-behavior:a401",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "compliance-drift",
+      "open-question-surfacing",
+      "pre-enactment-check"
+    ],
+    "name": "open-question-pre-enactment-check",
+    "who": "agent",
+    "claim": "When enacting an authoring plan or task spec, the agent should perform a pre-enactment self-check: did this task require crossing a line the authoring plan or user instruction flagged as unresolved (open question, explicit ambiguity, undecided tradeoff)? If yes, surface the ambiguity for explicit decision before proceeding, rather than silently choosing a resolution.",
+    "artifact": "session:2026-04-14",
+    "evidence": [
+      {
+        "date": "2026-04-14",
+        "detail": "Emerged from reflection on a silent-drift cycle. The authoring plan had explicit open-question markers that should have served as escalation triggers; the agent did not treat them as such. Converting the marker into an active pre-enactment self-check turns audit-dependent detection into audit-independent prevention. Not a guarantee - self-check is itself deliberate effort that training does not reinforce - but a named procedure is more likely to be applied than an unnamed disposition.",
+        "artifact": "source:rlhf-offloading-tension"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "v2 re-home with grounding untangled: the pre-enactment self-check rule was adopted in the 2026-04-14 reflection session (now the stipulation artifact); the external source that surfaced the tension moves to evidence, since external sources never ground a directive. Claim, name, tags, subjects, and deps carried verbatim from agent-behavior:a359. Original artifact: source:rlhf-offloading-tension.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-10"
   }
 ]

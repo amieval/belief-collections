@@ -25,7 +25,7 @@
   },
   {
     "id": "paradigm:a063",
-    "type": "implication",
+    "type": "inference",
     "kind": "composable-belief",
     "tags": [],
     "claim": "The assertion DAG's abstraction set (primitive/compound/implication/materialization/self-referential subject) is a candidate answer to 'what is the Keras of agentic coding' - high-level abstractions that let humans steer agent behavior with minimal cognitive overhead",
@@ -484,7 +484,7 @@
   },
   {
     "id": "paradigm:a355",
-    "type": "implication",
+    "type": "inference",
     "kind": "design-rationale",
     "domain": "system",
     "tags": [
@@ -512,7 +512,7 @@
   },
   {
     "id": "paradigm:a357",
-    "type": "implication",
+    "type": "inference",
     "kind": "architectural-synthesis",
     "domain": "system",
     "tags": [

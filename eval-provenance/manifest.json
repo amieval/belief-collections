@@ -1,5 +1,8 @@
 {
+  "depends_on": [
+    "method"
+  ],
+  "description": "Worked example for the eval: evidence-provenance capability. One published eval (silent-data-loss-v1) in miniature: atomic scored observations as primitives carrying an eval: artifact URI plus structured provenance in subjects/tags/evidence, a cross-ruler agreement compound, a model-version-scoped verdict implication, and the downstream guidance that rests on it. Borrows its vocabulary from the method: base collection (the local enum sdl:c1 is superseded by method:c1 - the worked demonstration of borrowing). Deliberately violates two methodology contracts (m-runs: the verdict cites one run; m-judge-validation: the LLM judge has no validation record) so the example doubles as the demonstration of what a method-check failure looks like - see README.md.",
   "namespace": "sdl",
-  "depends_on": ["method"],
-  "description": "Worked example for the eval: evidence-provenance capability. One published eval (silent-data-loss-v1) in miniature: atomic scored observations as primitives carrying an eval: artifact URI plus structured provenance in subjects/tags/evidence, a cross-ruler agreement compound, a model-version-scoped verdict implication, and the downstream guidance that rests on it. Borrows its vocabulary from the method: base collection (the local enum sdl:c1 is superseded by method:c1 - the worked demonstration of borrowing). Deliberately violates two methodology contracts (m-runs: the verdict cites one run; m-judge-validation: the LLM judge has no validation record) so the example doubles as the demonstration of what a method-check failure looks like - see README.md."
+  "schema_version": 2
 }

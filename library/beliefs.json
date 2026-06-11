@@ -1,10 +1,13 @@
 [
   {
     "id": "lib:a001",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "loan-period"],
+    "tags": [
+      "circulation",
+      "loan-period"
+    ],
     "claim": "The standard loan period for circulating items is 21 days.",
     "artifact": "document:circulation-policy-2026.md",
     "evidence": [
@@ -15,7 +18,10 @@
       }
     ],
     "subjects": [
-      {"ref": "policy/loan-period", "type": "policy"}
+      {
+        "ref": "policy/loan-period",
+        "type": "policy"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -23,10 +29,13 @@
   },
   {
     "id": "lib:a002",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "loan-period"],
+    "tags": [
+      "circulation",
+      "loan-period"
+    ],
     "claim": "The standard loan period for circulating items is 14 days.",
     "artifact": "document:circulation-policy-2019.md",
     "evidence": [
@@ -37,7 +46,10 @@
       }
     ],
     "subjects": [
-      {"ref": "policy/loan-period", "type": "policy"}
+      {
+        "ref": "policy/loan-period",
+        "type": "policy"
+      }
     ],
     "deps": [],
     "status": "superseded",
@@ -46,14 +58,20 @@
   },
   {
     "id": "lib:a003",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "holds"],
+    "tags": [
+      "circulation",
+      "holds"
+    ],
     "claim": "A returned item that has an active hold enters the on_hold state rather than becoming available.",
     "artifact": "document:circulation-policy-2026.md",
     "subjects": [
-      {"ref": "item-state/on_hold", "type": "item-state"}
+      {
+        "ref": "item-state/on_hold",
+        "type": "item-state"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -61,14 +79,20 @@
   },
   {
     "id": "lib:a004",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["membership", "holds"],
+    "tags": [
+      "membership",
+      "holds"
+    ],
     "claim": "A member may have at most 5 active holds at one time.",
     "artifact": "document:membership-rules-2026.md",
     "subjects": [
-      {"ref": "policy/hold-limit", "type": "policy"}
+      {
+        "ref": "policy/hold-limit",
+        "type": "policy"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -76,14 +100,20 @@
   },
   {
     "id": "lib:a005",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "holds"],
+    "tags": [
+      "circulation",
+      "holds"
+    ],
     "claim": "A hold not collected within 7 days expires, and the item passes to the next member in the hold queue.",
     "artifact": "document:circulation-policy-2026.md",
     "subjects": [
-      {"ref": "policy/hold-expiry", "type": "policy"}
+      {
+        "ref": "policy/hold-expiry",
+        "type": "policy"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -91,14 +121,20 @@
   },
   {
     "id": "lib:a006",
-    "type": "primitive",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "overdue"],
+    "tags": [
+      "circulation",
+      "overdue"
+    ],
     "claim": "An item that is 30 days overdue is marked lost and billed to the borrower.",
     "artifact": "document:circulation-policy-2026.md",
     "subjects": [
-      {"ref": "item-state/lost", "type": "item-state"}
+      {
+        "ref": "item-state/lost",
+        "type": "item-state"
+      }
     ],
     "deps": [],
     "status": "active",
@@ -109,10 +145,16 @@
     "type": "compound",
     "kind": "observation",
     "domain": "library",
-    "tags": ["circulation", "holds"],
+    "tags": [
+      "circulation",
+      "holds"
+    ],
     "claim": "The date a held item becomes collectable cannot be derived from the loan period alone; it depends jointly on the borrower's loan clock and the hold-expiry clock of any earlier holder.",
     "subjects": [],
-    "deps": ["lib:a001", "lib:a005"],
+    "deps": [
+      "lib:a001",
+      "lib:a005"
+    ],
     "status": "active",
     "created": "2026-01-06"
   },
@@ -121,39 +163,58 @@
     "type": "compound",
     "kind": "observation",
     "domain": "library",
-    "tags": ["overdue", "fines"],
+    "tags": [
+      "overdue",
+      "fines"
+    ],
     "claim": "The overdue-fine schedule is calibrated to a 14-day loan baseline, so its grace windows and accrual rate assume the shorter period.",
     "subjects": [],
-    "deps": ["lib:a002"],
+    "deps": [
+      "lib:a002"
+    ],
     "status": "active",
     "created": "2026-01-06"
   },
   {
     "id": "lib:a020",
-    "type": "implication",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "holds"],
+    "tags": [
+      "circulation",
+      "holds"
+    ],
     "claim": "When a hold expires, transition the item to available (or to the next holder's on_hold) and notify the next member in the queue.",
     "subjects": [],
-    "deps": ["lib:a005", "lib:c001"],
+    "deps": [
+      "lib:a005",
+      "lib:c001"
+    ],
     "materialized": null,
     "status": "active",
     "created": "2026-01-08"
   },
   {
     "id": "lib:a021",
-    "type": "implication",
+    "type": "directive",
     "kind": "rule",
     "domain": "library",
-    "tags": ["circulation", "loan-period"],
+    "tags": [
+      "circulation",
+      "loan-period"
+    ],
     "claim": "When the standard loan period changes, recompute due dates for all active checkouts that have not yet been returned.",
     "subjects": [],
-    "deps": ["lib:a001"],
+    "deps": [
+      "lib:a001"
+    ],
     "materialized": {
       "date": "2026-01-09",
       "todos": [
-        {"action": "Recompute due dates for active checkouts after the loan-period change to 21 days", "id": "t0001"}
+        {
+          "action": "Recompute due dates for active checkouts after the loan-period change to 21 days",
+          "id": "t0001"
+        }
       ]
     },
     "status": "active",
@@ -161,20 +222,65 @@
   },
   {
     "id": "lib:c001",
-    "type": "implication",
+    "type": "directive",
     "kind": "state-machine",
     "domain": "library",
-    "tags": ["circulation", "item-state"],
+    "tags": [
+      "circulation",
+      "item-state"
+    ],
     "name": "item-status-lifecycle",
     "claim": "A circulating item moves through a fixed lifecycle of states: available, checked_out, on_hold, lost, and withdrawn.",
     "rules": [
-      {"from": "available", "to": "checked_out", "requires": ["member_in_good_standing"]},
-      {"from": "checked_out", "to": "available", "requires": ["no_active_hold"]},
-      {"from": "checked_out", "to": "on_hold", "requires": ["active_hold"]},
-      {"from": "checked_out", "to": "lost", "requires": ["overdue_30_days"]},
-      {"from": "on_hold", "to": "checked_out", "requires": ["collected_by_holder"]},
-      {"from": "on_hold", "to": "available", "requires": ["hold_expired"]},
-      {"from": "available", "to": "withdrawn", "requires": ["deaccessioned"]}
+      {
+        "from": "available",
+        "requires": [
+          "member_in_good_standing"
+        ],
+        "to": "checked_out"
+      },
+      {
+        "from": "checked_out",
+        "requires": [
+          "no_active_hold"
+        ],
+        "to": "available"
+      },
+      {
+        "from": "checked_out",
+        "requires": [
+          "active_hold"
+        ],
+        "to": "on_hold"
+      },
+      {
+        "from": "checked_out",
+        "requires": [
+          "overdue_30_days"
+        ],
+        "to": "lost"
+      },
+      {
+        "from": "on_hold",
+        "requires": [
+          "collected_by_holder"
+        ],
+        "to": "checked_out"
+      },
+      {
+        "from": "on_hold",
+        "requires": [
+          "hold_expired"
+        ],
+        "to": "available"
+      },
+      {
+        "from": "available",
+        "requires": [
+          "deaccessioned"
+        ],
+        "to": "withdrawn"
+      }
     ],
     "invariants": [
       "An item is in exactly one state at any time.",
@@ -185,21 +291,40 @@
     ],
     "contract": true,
     "subjects": [
-      {"ref": "item-state/lifecycle", "type": "item-state"}
+      {
+        "ref": "item-state/lifecycle",
+        "type": "item-state"
+      }
     ],
-    "deps": ["lib:a003", "lib:a005", "lib:a006"],
+    "deps": [
+      "lib:a003",
+      "lib:a005",
+      "lib:a006"
+    ],
     "status": "active",
     "created": "2026-01-08"
   },
   {
     "id": "lib:c002",
-    "type": "implication",
+    "type": "directive",
     "kind": "enum-registry",
     "domain": "library",
-    "tags": ["lib-schema", "enum", "kind"],
+    "tags": [
+      "lib-schema",
+      "enum",
+      "kind"
+    ],
     "claim": "Canonical enum of belief.kind values used in this collection. Closed: no active belief carries a kind outside this set.",
     "rules": [
-      {"field": "kind", "values": ["rule", "observation", "state-machine", "enum-registry"]}
+      {
+        "field": "kind",
+        "values": [
+          "rule",
+          "observation",
+          "state-machine",
+          "enum-registry"
+        ]
+      }
     ],
     "invariants": [
       "Exactly one rule entry, with field 'kind'.",
@@ -213,13 +338,22 @@
   },
   {
     "id": "lib:c003",
-    "type": "implication",
+    "type": "directive",
     "kind": "enum-registry",
     "domain": "library",
-    "tags": ["lib-schema", "enum", "domain"],
+    "tags": [
+      "lib-schema",
+      "enum",
+      "domain"
+    ],
     "claim": "Canonical enum of belief.domain values used in this collection.",
     "rules": [
-      {"field": "domain", "values": ["library"]}
+      {
+        "field": "domain",
+        "values": [
+          "library"
+        ]
+      }
     ],
     "invariants": [
       "Exactly one rule entry, with field 'domain'.",
@@ -233,13 +367,22 @@
   },
   {
     "id": "lib:c004",
-    "type": "implication",
+    "type": "directive",
     "kind": "enum-registry",
     "domain": "library",
-    "tags": ["lib-schema", "enum", "artifact-scheme"],
+    "tags": [
+      "lib-schema",
+      "enum",
+      "artifact-scheme"
+    ],
     "claim": "Canonical enum of artifact URI schemes used by primitives in this collection.",
     "rules": [
-      {"field": "artifact-scheme", "values": ["document"]}
+      {
+        "field": "artifact-scheme",
+        "values": [
+          "document"
+        ]
+      }
     ],
     "invariants": [
       "Exactly one rule entry, with field 'artifact-scheme'.",

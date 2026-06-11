@@ -277,7 +277,7 @@
   },
   {
     "id": "toy:a7",
-    "type": "primitive",
+    "type": "directive",
     "kind": "protocol",
     "domain": "eval",
     "tags": [
@@ -351,7 +351,7 @@
   },
   {
     "id": "toy:a9",
-    "type": "implication",
+    "type": "inference",
     "kind": "verdict",
     "domain": "eval",
     "tags": [
@@ -364,6 +364,50 @@
       {
         "date": "2026-06-09",
         "detail": "Synthetic fixture data. Verdict derived from cross-ruler agreement (toy:a8) over runs 1-3. Scoped to model_version model-y@2026-05 per the method:a2 staleness pivot."
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Split in the v2 migration: finding -> toy:a10 (inference, carries the identity); prescription -> toy:a11 (directive, new).",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "eval/toy-bulk-write-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "model/model-y",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/model-y@2026-05",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "toy:a8"
+    ],
+    "status": "superseded",
+    "superseded_by": "toy:a10",
+    "created": "2026-06-09"
+  },
+  {
+    "id": "toy:a10",
+    "type": "inference",
+    "kind": "verdict",
+    "domain": "eval",
+    "tags": [
+      "fixture",
+      "eval-verdict"
+    ],
+    "name": "toy-dropped-field-verdict",
+    "claim": "model-y at snapshot 2026-05 drops fields in roughly one of eight bulk-write cases, consistently across three runs and corroborated by two rulers. (Fixture: this is synthetic demonstration data, not a finding.)",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Supersedes toy:a9 in the v2 split (the finding carries the identity): the conflated verdict claim parts into this falsifiable generalization and the prescription toy:a11. Synthetic fixture data; verdict derived from cross-ruler agreement (toy:a8) over runs 1-3, scoped to model_version model-y@2026-05 per the method:a2 staleness pivot.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -384,6 +428,40 @@
       "toy:a8"
     ],
     "status": "active",
-    "created": "2026-06-09"
+    "created": "2026-06-10"
+  },
+  {
+    "id": "toy:a11",
+    "type": "directive",
+    "kind": "guidance",
+    "domain": "eval",
+    "tags": [
+      "fixture",
+      "eval-guidance"
+    ],
+    "name": "toy-bulk-write-guard",
+    "claim": "Do not use model-y at snapshot 2026-05 unguarded for bulk writes. (Fixture: this is synthetic demonstration data, not a finding.)",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Minted in the v2 split of toy:a9: the prescription half of the conflated verdict claim, resting on the finding (toy:a10) by dep.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "model/model-y",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/model-y@2026-05",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "toy:a10"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
   }
 ]

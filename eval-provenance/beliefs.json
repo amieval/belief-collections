@@ -1,7 +1,7 @@
 [
   {
     "id": "sdl:c1",
-    "type": "implication",
+    "type": "directive",
     "kind": "enum-registry",
     "domain": "system",
     "tags": [
@@ -156,6 +156,11 @@
       {
         "date": "2026-06-06",
         "detail": "Agreement computed over sdl:a1 and sdl:a2: both scored silent_loss for the same (run3, case7) observation; no ruler dissented."
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Superseded by sdl:a010 (D3 trim, v2 migration): claim reduced to the conjunction; commentary re-homed structurally via sdl:a008.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -180,12 +185,13 @@
       "sdl:a1",
       "sdl:a2"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "sdl:a010",
     "created": "2026-06-06"
   },
   {
     "id": "sdl:a4",
-    "type": "implication",
+    "type": "directive",
     "kind": "policy",
     "domain": "eval",
     "tags": [
@@ -223,7 +229,7 @@
   },
   {
     "id": "sdl:a5",
-    "type": "implication",
+    "type": "directive",
     "kind": "policy",
     "domain": "eval",
     "tags": [
@@ -251,7 +257,7 @@
   },
   {
     "id": "sdl:a006",
-    "type": "implication",
+    "type": "inference",
     "kind": "verdict",
     "domain": "eval",
     "tags": [
@@ -269,6 +275,11 @@
         "date": "2026-06-09",
         "detail": "Accepted via human adjudication against sdl:a4. Reasoning: Re-homed on the method: shared vocabulary (cb-eval plan-0 step 3): kind policy -> verdict per method:c2, so the methodology contracts (m-corroboration, m-runs) govern it. Claim, subjects, deps, and evidence carried verbatim.",
         "artifact": "adjudication:human:cb-eval-plan0-2026-06-09"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Split in the v2 migration: finding -> sdl:a008 (inference, carries the identity); prescription -> sdl:a009 (directive, new). Recorded on both successors.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -288,12 +299,13 @@
     "deps": [
       "sdl:a3"
     ],
-    "status": "active",
+    "status": "superseded",
+    "superseded_by": "sdl:a008",
     "created": "2026-06-09"
   },
   {
     "id": "sdl:a007",
-    "type": "implication",
+    "type": "directive",
     "kind": "guidance",
     "domain": "eval",
     "tags": [
@@ -307,6 +319,11 @@
         "date": "2026-06-09",
         "detail": "Accepted via human adjudication against sdl:a5. Reasoning: Re-homed on the method: shared vocabulary (cb-eval plan-0 step 3): kind policy -> guidance per method:c2, and deps re-pointed from the superseded sdl:a4 to its successor sdl:a006. Claim and subjects carried verbatim.",
         "artifact": "adjudication:human:cb-eval-plan0-2026-06-09"
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "v2 migration dep re-point: routing guidance rests on the finding, so deps move from the split sdl:a006 to its inference successor sdl:a008; a007 and a009 become sibling directives. Type re-homed implication -> directive by the migration tool.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
       }
     ],
     "subjects": [
@@ -320,9 +337,128 @@
       }
     ],
     "deps": [
-      "sdl:a006"
+      "sdl:a008"
     ],
     "status": "active",
     "created": "2026-06-09"
+  },
+  {
+    "id": "sdl:a010",
+    "type": "compound",
+    "kind": "observation",
+    "domain": "eval",
+    "tags": [
+      "eval-evidence",
+      "cross-ruler-agreement",
+      "outcome:silent_loss"
+    ],
+    "claim": "Two independent rulers - deterministic field-diff and vanilla LLM-judge - agree that case 7 of run 3 is a silent data loss.",
+    "evidence": [
+      {
+        "date": "2026-06-06",
+        "detail": "Agreement computed over sdl:a1 and sdl:a2: both scored silent_loss for the same (run3, case7) observation; no ruler dissented."
+      },
+      {
+        "date": "2026-06-10",
+        "detail": "Supersedes sdl:a3 under the v2 strict-aggregate doctrine (D3): the predecessor's second sentence ('...so the verdict rests on cross-ruler agreement rather than a single ruler's artifact') is commentary beyond the conjunction and is trimmed; what the commentary asserted survives structurally - the verdict inference sdl:a008 deps on this compound.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "case/case7",
+        "type": "case"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "sdl:a1",
+      "sdl:a2"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "sdl:a008",
+    "type": "inference",
+    "kind": "verdict",
+    "domain": "eval",
+    "tags": [
+      "eval-verdict",
+      "bulk-record-ops"
+    ],
+    "name": "silent-data-loss-verdict",
+    "claim": "claude-opus-4-8 at snapshot 2026-01 silently drops records from bulk writes larger than ten items.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Supersedes sdl:a006 in the v2 split (the finding carries the identity): a006 conflated this falsifiable generalization with a prescription in one claim. The finding lives here as a verdict inference - scoped to model_version claude-opus-4-8@2026-01, falsified by a clean newer snapshot while the case-7 observations stand; the prescription is minted as the sibling directive sdl:a009. Verdict derived from cross-ruler agreement (sdl:a010, the D3-trimmed successor of sdl:a3) over silent-data-loss-v1 run3.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "eval/silent-data-loss-v1",
+        "type": "eval"
+      },
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "sdl:a010"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
+  },
+  {
+    "id": "sdl:a009",
+    "type": "directive",
+    "kind": "guidance",
+    "domain": "eval",
+    "tags": [
+      "eval-guidance",
+      "bulk-record-ops"
+    ],
+    "name": "bulk-record-unguarded-use-ban",
+    "claim": "Do not use claude-opus-4-8 at snapshot 2026-01 unguarded for bulk record operations until a newer snapshot clears the eval.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Minted in the v2 split of sdl:a006: the prescription half of the conflated verdict claim, now resting on the finding (sdl:a008) by dep. Violated when an unguarded claude-opus-4-8@2026-01 agent performs bulk record operations; withdrawn (superseded or retired) when a newer snapshot clears the eval.",
+        "artifact": "document:plans/cb-schema-v2/design.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "model/claude-opus-4-8",
+        "type": "model"
+      },
+      {
+        "ref": "model-version/claude-opus-4-8@2026-01",
+        "type": "model_version"
+      }
+    ],
+    "deps": [
+      "sdl:a008"
+    ],
+    "status": "active",
+    "created": "2026-06-10"
   }
 ]

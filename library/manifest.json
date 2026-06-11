@@ -1,5 +1,6 @@
 {
-  "namespace": "lib",
   "depends_on": [],
-  "description": "A self-contained worked example (a lending library) in its own lib: namespace. Declares its own kind/domain/artifact-scheme enum contracts, so it verifies standalone with no skips. A gentle on-ramp before the self-referential cb: graph."
+  "description": "A self-contained worked example (a lending library) in its own lib: namespace. Declares its own kind/domain/artifact-scheme enum contracts, so it verifies standalone with no skips. A gentle on-ramp before the self-referential cb: graph.",
+  "namespace": "lib",
+  "schema_version": 2
 }
