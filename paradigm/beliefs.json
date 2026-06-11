@@ -806,6 +806,11 @@
     "date": "2026-06-11",
     "detail": "Persisted to the graph at stasis entry per cb:a489 (the obligation previously lived only in session memory and the source doc's extraction notes). The source preserves the identity-thesis exchange verbatim; extraction follows the positions pipeline precedent (cb:a484-a488).",
     "artifact": "document:sources/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+   },
+   {
+    "date": "2026-06-11",
+    "detail": "Discharged at the first observation lap, with a finding: the extraction predated the directive - another session had already extracted all eight claims (a358-a365) before a367 was authored from stale session memory. Materialized with refs to the pre-existing nodes rather than retracted: the prescription was sound and the world had already complied. The incident is the live specimen for cb:a501 (the recency view) and a worked instance of the graph-over-memory rule: the graph is the SSOT of what remains to be done; session memory is not.",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
    }
   ],
   "subjects": [
@@ -816,7 +821,20 @@
   ],
   "deps": [],
   "status": "active",
-  "created": "2026-06-11"
+  "created": "2026-06-11",
+  "materialized": {
+   "date": "2026-06-11",
+   "todos": [
+    "paradigm:a358",
+    "paradigm:a359",
+    "paradigm:a360",
+    "paradigm:a361",
+    "paradigm:a362",
+    "paradigm:a363",
+    "paradigm:a364",
+    "paradigm:a365"
+   ]
+  }
  },
  {
   "id": "paradigm:a368",
