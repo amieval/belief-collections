@@ -2707,5 +2707,95 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-10"
+  },
+  {
+    "id": "agent-behavior:a402",
+    "type": "directive",
+    "kind": "formatting-rule",
+    "domain": "agent",
+    "tags": [
+      "prose",
+      "docs",
+      "lifecycle:recurring"
+    ],
+    "name": "no-negative-framing-in-prose",
+    "claim": "Docs and explanatory prose state what a thing is or does directly, never the denial-then-correction shape 'X doesn't Y; it Z'. Informational contrasts ('beliefs, not facts') and technical constraint statements ('line numbers are never stored') are fine; the banned pattern is the rhetorical denial pivot.",
+    "artifact": "user:mark:2026-06-10",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Stated while reviewing the composable-beliefs README rewrite: Mark accepted the substance of the pitch sentence 'CB does not reason for you; it makes your reasoning inspectable' but flagged the framing pattern explicitly - 'one thing - no negative framing: x doesn't y, it...'. Applied across the README the same day ('Reasoning is authored', 'Application code stays in modules', 'The graph routes, code implements').",
+        "artifact": "session:2026-06-10-readme-rewrite"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "agent-behavior:a403",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "domain": "agent",
+    "tags": [
+      "error",
+      "speculative-plumbing"
+    ],
+    "name": "speculative-gate-error",
+    "claim": "Agent builds protective structure for states that can no longer occur: during the cb-dashboard schema audit it added a version gate rejecting v1 graphs from standalone sources, hours before the user retired the version vocabulary entirely - every collection was already migrated and no pre-migration graph existed anywhere the system could reach. The guard defended against an impossible state, contradicting the design's own refuse-speculative-plumbing principle, and was removed the same day.",
+    "artifact": "session:2026-06-11-viewer-audit",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "The audit correctly found that standalone graphs bypassed the manifest version check, and the agent reflexively closed the 'hole' with a reject-v1 gate plus migrate-pointer error. The user's correction reframed the situation: 'ok let's remove v1 as a concern completely... as far as the system is concerned, this is just the schema now.' The right question was never 'is this path gated' but 'can the guarded-against state still occur anywhere' - it could not. Invalid shapes already fail verification; the version check added vocabulary, not safety.",
+        "artifact": "session:2026-06-11-viewer-audit"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "agent-behavior:a404",
+    "type": "directive",
+    "kind": "rule",
+    "domain": "agent",
+    "tags": [
+      "corrective",
+      "speculative-plumbing",
+      "lifecycle:recurring"
+    ],
+    "name": "guard-live-states-only",
+    "claim": "Before adding a guard, gate, or compatibility shim, establish that the guarded-against state can still occur somewhere the system can reach. Protection for impossible states is speculative plumbing: when a migration or cleanup completes ecosystem-wide, retire its vocabulary and tooling rather than fortify against its past; existing validation (the verifier) is the residual guard for invalid shapes.",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Corrective derived from the speculative-gate error (a403), generalizing the user's 'remove v1 as a concern completely' correction and the framework's existing refuse-speculative-plumbing posture (the Tidewave Step B deferral pattern: specified but unbuilt until genuinely needed).",
+        "artifact": "session:2026-06-11-viewer-audit"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [
+      "agent-behavior:a403"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]

@@ -763,5 +763,30 @@
     ],
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a366",
+    "type": "directive",
+    "kind": "convention",
+    "domain": "ops",
+    "tags": [
+      "positions",
+      "provenance",
+      "lifecycle:recurring"
+    ],
+    "name": "source-position-dag-pipeline",
+    "claim": "Chat-derived multi-claim stances persist through the three-layer pipeline: archive the conversation as a source document (sources/), state the stance as a position with one claim block per candidate belief (positions/, plan-app schema), then extract the claims into the target collection through the write flow. Each belief cites the position as its document: artifact; the position's Origin cites the source; claim blocks accumulate [[belief-id]] refs as extraction lands. The declared DAG-status line is the author's claim only - rendered status joins live against the graph. Single-claim extraction from a repo document stays two-layer: source to belief, no position.",
+    "artifact": "document:positions/README.md",
+    "evidence": [
+      {
+        "date": "2026-06-11",
+        "detail": "Convention proposed by Mark (storing stances as 'positions' per the plan-app schema: an artifact, ie. the chat, then a cb dag representation of the beliefs) and worked end to end in one session: the eval-identity exchange archived to sources/, the eight-claim position authored, paradigm:a358-a365 extracted with preflight clean, the position ledger flipped to asserted with refs, and plan-app's positions surface federated with a live DAG join replacing the declared-status cache per cb:a386.",
+        "artifact": "session:2026-06-11-positions-pipeline"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]
