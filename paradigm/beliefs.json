@@ -535,5 +535,233 @@
     ],
     "status": "active",
     "created": "2026-04-14"
+  },
+  {
+    "id": "paradigm:a358",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "judgment-layer"
+    ],
+    "name": "eval-side-judgment-layer-informal",
+    "claim": "The eval side's judgment layer is informal in current practice: which cases mattered, why the verdict follows, and when it was revised live in blog posts and meeting decisions, outside any checkable artifact.",
+    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Session 2026-06-10, designing the cb eval ledger: surveying published eval practice showed case selection, verdict reasoning, and corrections living in prose surfaces (blog posts, meeting decisions) with no machine-checkable trail; the method: contracts were designed against exactly this gap.",
+        "artifact": "session:2026-06-10-eval-identity"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a359",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "judgment-layer"
+    ],
+    "name": "agent-side-judgment-layer-opaque",
+    "claim": "The agent side's judgment layer is opaque in current practice: judgment happens inside forward passes, with no inspectable belief state.",
+    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Session 2026-06-10: the agent-side counterpart observation - runtime judgment (what to trust, when to corroborate, when to revise) executes inside model forward passes; nothing exposes a belief state that could be queried, corroborated, or audited.",
+        "artifact": "session:2026-06-10-eval-identity"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a360",
+    "type": "primitive",
+    "kind": "observation",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "field-survey"
+    ],
+    "name": "field-acknowledges-identity-piecewise",
+    "claim": "The field acknowledges the eval/agent identity piecewise and instrumentally - LLM-as-judge, self-critique loops, verifier and process-reward models, scalable oversight - each framed as a tool for improving the agent, never as the agent's epistemic faculty built out-of-body. RLHF is the extreme case: a reward model is an institutionalized ruler whose verdicts are compiled into weights, and it is described as training, with the architectural identity unremarked.",
+    "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Session 2026-06-10: survey of the field's partial acknowledgments - LLM-as-judge, Reflexion-style self-critique, verifier and process-reward models, evaluator-optimizer patterns, scalable-oversight research (explicitly about evaluating evaluators) - each instrumental; RLHF noted as eval architecture literally becoming agent cognition while described as training.",
+        "artifact": "session:2026-06-10-eval-identity"
+      }
+    ],
+    "subjects": [],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a361",
+    "type": "inference",
+    "kind": "structural-parallel",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "agentic-epistemics"
+    ],
+    "name": "eval-architecture-is-agentic-epistemics",
+    "claim": "Eval architecture is the epistemic core of agentic architecture, externalized; the shared kernel is justified belief formation under evidence, with revision. An eval is an agent's cognitive loop unrolled and made public; an agent is an eval harness pointed at the world that consumes its own findings.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: expressing eval cognition and agent cognition in the cb schema made the isomorphism fall out of the notation - observation/perception, cross-ruler corroboration, verdict/operative belief, methodology contracts/epistemic rules, staleness pivot/belief revision align term by term.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a358",
+      "paradigm:a359",
+      "paradigm:a360"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a362",
+    "type": "inference",
+    "kind": "structural-parallel",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "agentic-epistemics"
+    ],
+    "name": "identity-unacknowledged-no-common-representation",
+    "claim": "The eval/agent identity goes unacknowledged because it is only statable in a common representation, which has not existed; divergent lineages (evals descend from benchmarking and QA), tempo masquerading as kind, incentives on both sides, and vocabulary pre-sorting reinforce the gap.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: with the judgment layer informal on the eval side and opaque on the agent side, the shared kernel (observe, corroborate, judge, revise) has no artifact to be recognized in; the reinforcing causes (lineage, tempo, incentives, vocabulary) are analyzed in the position's Origin source.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a361",
+      "paradigm:a358",
+      "paradigm:a359",
+      "paradigm:a360"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a363",
+    "type": "inference",
+    "kind": "structural-parallel",
+    "domain": "design",
+    "tags": [
+      "eval-identity",
+      "scope"
+    ],
+    "name": "identity-scope-epistemic-not-conative",
+    "claim": "The eval/agent identity covers the epistemic layer of agency, not the conative layer: goal generation, planning, and action selection have no eval counterpart.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10 as the identity's scope limit: the claim that survives scrutiny is that eval architecture IS agentic epistemic architecture, not agentic architecture entire - consistent with the thesis scoping CB to the prerequisite for wanting, not wanting.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a361"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a364",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "system",
+    "tags": [
+      "eval-identity",
+      "method-contracts"
+    ],
+    "name": "method-contracts-are-agent-epistemics",
+    "claim": "The method: methodology contracts are agent epistemics in their most checkable form - corroboration, provenance, sample-size, judge calibration, and visible revision as machine-checked graph structure.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: stripping the eval vocabulary from m-corroboration, m-provenance, m-subjects, m-runs, m-judge-validation, and m-correction leaves the epistemic rules an agent would want load-bearing - seek independent confirmation, cite raw evidence, never generalize from one sample, calibrate judges, revise visibly. The contracts are subjects of this claim, not deps: it is about them, derived from the identity inference.",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "method:c4",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c5",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c6",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c7",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c8",
+        "type": "belief"
+      },
+      {
+        "ref": "method:c9",
+        "type": "belief"
+      }
+    ],
+    "deps": [
+      "paradigm:a361"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
+  },
+  {
+    "id": "paradigm:a365",
+    "type": "inference",
+    "kind": "design-observation",
+    "domain": "system",
+    "tags": [
+      "eval-identity",
+      "roadmap"
+    ],
+    "name": "one-kernel-three-tempos",
+    "claim": "CB makes the eval/agent identity statable by expressing eval cognition and agent cognition in one notation; the roadmap consequence is one kernel at three tempos - the ledger at publication grade, runtime decision-time queries, and consensus across graphs.",
+    "evidence": [
+      {
+        "date": "2026-06-10",
+        "detail": "Derived in session 2026-06-10: the identity became visible mechanically once both cognitions were drawn in the cb schema, and it reorders the roadmap into one line - build the epistemic kernel at publication grade (the eval ledger), speed it up (decision-time queries, the honest-status runtime gap), multiply the subjects (consensus across graphs).",
+        "artifact": "document:positions/2026-06-10-eval-architecture-is-agentic-epistemics.md"
+      }
+    ],
+    "subjects": [],
+    "deps": [
+      "paradigm:a361",
+      "paradigm:a364"
+    ],
+    "status": "active",
+    "created": "2026-06-11"
   }
 ]
