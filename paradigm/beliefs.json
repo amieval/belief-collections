@@ -1030,5 +1030,82 @@
   "deps": [],
   "status": "active",
   "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a376",
+  "type": "primitive",
+  "kind": "meta-observation",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "emergence",
+   "generativity"
+  ],
+  "claim": "The 2026-06-10/11 events sort into three bins: engineered outcomes that performed to spec (the memoryless bootstrap, the desk, ceremony rules governing later decisions); designed-for generativity, where the class was anticipated but the instances were not (checks catching their own authors, rules governing cold agents across process boundaries, the conflict gate surfacing the exact adjacency under debate); and genuine surprises whose unscripted character is proven by the co-occurring error record - the surprises ran both directions, which is what unscripted looks like.",
+  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "The agent's calibrated self-assessment when asked whether the week's synergies were emergent, synchronistic, or anticipated; preserved verbatim in the position. The error record doing the proving: three contract supersessions missed by the design doc, a thirty-node re-home undercount, a failed handoff, a dangling commit.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a377",
+  "type": "inference",
+  "kind": "meta-observation",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "emergence",
+   "multi-session"
+  ],
+  "claim": "The cross-session correction loop is weak emergence in the standard sense: no component contains it - the verifier checks shapes, the liveness convention says read the tree, sessions are independent - yet the ensemble produces agents catching each other's errors through the substrate, a behavior nobody coded and nobody planned.",
+  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "Generalizes over a369 (checks against authors) and a371 (three-session coordination), with the dangling-commit catch as the clearest instance: the memoryless bootstrap enforced the ephemeral-memory rule against the session that authored it. Deflator retained from the position: most synchronicities in a dense self-referential graph are base-rate effects; this loop is the residue that survives the deflation.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [
+   "paradigm:a369",
+   "paradigm:a371"
+  ],
+  "status": "active",
+  "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a378",
+  "type": "inference",
+  "kind": "meta-observation",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "emergence",
+   "adjudicability"
+  ],
+  "claim": "Emergence claims are adjudicable in a system that records its predictions: when forecasts live in transcripts, surprises land as dated evidence entries, and failures are postscripts, anticipated-versus-surprised can be scored against the ledger instead of narrated. Most emergence debates are unfalsifiable precisely because no substrate held the predictions.",
+  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "The position's keeper claim, standing beyond the week's anecdotes: the bare-begin prediction was on the record before the experiment, which is what made the post-hoc classification scoring rather than storytelling. A paradigm-grade property of prediction-recording substrates generally.",
+    "artifact": "document:positions/2026-06-11-emergence-or-engineering.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [
+   "paradigm:a376"
+  ],
+  "status": "active",
+  "created": "2026-06-11"
  }
 ]
