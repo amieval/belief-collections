@@ -1107,5 +1107,30 @@
   ],
   "status": "active",
   "created": "2026-06-11"
+ },
+ {
+  "id": "paradigm:a379",
+  "type": "primitive",
+  "kind": "meta-observation",
+  "domain": "design",
+  "tags": [
+   "anecdote",
+   "steering",
+   "narrative"
+  ],
+  "who": "mark",
+  "claim": "Prose narrative is the operator's steering bandwidth: a narrative recounting of an epoch (where things stood, the arc, where things stand now) does what dry summaries cannot - it lets the human keep up with agent-speed work well enough to direct it. Comprehension converts records into steering; narrative is the format that converts fastest.",
+  "artifact": "document:positions/2026-06-11-emergence-or-engineering.md",
+  "evidence": [
+   {
+    "date": "2026-06-11",
+    "detail": "Mark's observation at the close of the 2026-06 epoch, prompted by an agent's before/after overview of the stasis state: across the epoch his comprehension tracked the narrative artifacts (the blog drafts, the overviews), and his steering quality tracked his comprehension. Formalized framework-side as the chronicle convention (cb:a520).",
+    "artifact": "document:plans/cb-schema-v2/transcript-execution.md"
+   }
+  ],
+  "subjects": [],
+  "deps": [],
+  "status": "active",
+  "created": "2026-06-11"
  }
 ]
