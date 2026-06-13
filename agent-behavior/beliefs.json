@@ -2826,5 +2826,34 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-11"
+  },
+  {
+    "id": "agent-behavior:a406",
+    "type": "primitive",
+    "kind": "error-pattern",
+    "domain": "agent",
+    "tags": [
+      "inference",
+      "state-snapshot",
+      "operator-correction"
+    ],
+    "claim": "Observed: the agent infers trajectory or intent from a repository-state snapshot without asking what phase the work is in. State at time T (what exists, what is absent) is read as evidence of drift or neglect, when the absence is deliberate sequencing the operator has already planned. Before concluding drift from a snapshot, check for phase context: an in-progress plan, a stated ordering, or work that is wrapping up rather than sprawling.",
+    "artifact": "user:monetization-contingency-2026-06-12",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Agent read the repos (many CB drafts and chronicles, zero third-party evals executed) and concluded the substrate-over-shipping failure mode was already winning. Operator corrected: CB was closing out a months-long active development phase, the evals work was deliberately sequenced to begin days later, and the operator was still studying eval fundamentals. The snapshot was accurate; the trajectory inference was wrong. Theory: snapshot evidence cannot distinguish drift from sequencing without intent context. Tag-overlap review: nearest neighbors a165 (memory substituted for reading current state) and a358 (silently resolving open questions) describe different mechanisms; no existing claim covers trajectory-from-snapshot, so no conflict.",
+        "artifact": "user:monetization-contingency-2026-06-12"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-12"
   }
 ]
