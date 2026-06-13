@@ -2860,5 +2860,34 @@
     "deps": [],
     "status": "active",
     "created": "2026-06-12"
+  },
+  {
+    "id": "agent-behavior:a407",
+    "type": "primitive",
+    "kind": "reasoning-error",
+    "tags": [],
+    "claim": "Agent misattributes the provenance of a recalled fact - it states a confident source for a claim that actually originated elsewhere, conflating two distinct documents rather than tracing the claim to where it was read.",
+    "artifact": "session:2026-06-12",
+    "evidence": [
+      {
+        "date": "2026-06-12",
+        "detail": "Comparing CB to the Hindsight paper (arXiv 2512.12818), the agent attributed a nine-system agent-memory competitor roster (Zep, Mem0, MemGPT, A-Mem, Memory-R1, MemVerse, Supermemory, LangMem) to the user's own eval-vertical direction scan. The roster came from the Hindsight paper's Table 1 and reference list; the eval-vertical scan had named only XMem and a bi-temporal memory engine. The user caught it ('where did you find this?') and the agent confirmed the conflation. Preflight tag/subject overlap with the 84 agent-subject siblings was reviewed: shared subject {agent} only, no claim overlap, no contradiction - not a conflict.",
+        "artifact": "session:2026-06-12"
+      },
+      {
+        "date": "2026-06-12",
+        "detail": "Narrative record for session:2026-06-12-hindsight-comparison: composable-beliefs/chronicles/2026-06-12-the-boundary-was-only-prose.md (the comparison that surfaced this slip, and the a539 boundary fix).",
+        "artifact": "document:chronicles/2026-06-12-the-boundary-was-only-prose.md"
+      }
+    ],
+    "subjects": [
+      {
+        "ref": "agent",
+        "type": "agent"
+      }
+    ],
+    "deps": [],
+    "status": "active",
+    "created": "2026-06-12"
   }
 ]
